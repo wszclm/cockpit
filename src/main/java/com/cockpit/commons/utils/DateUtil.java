@@ -1,7 +1,8 @@
 package com.cockpit.commons.utils;
 
 
-import com.mujun.mng.commons.exception.BaseException;
+
+import com.cockpit.commons.exception.BaseException;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -740,7 +741,7 @@ public class DateUtil {
 		try {
 			return dateFormat.parse(dateStr);
 		} catch (ParseException e) {
-			throw new  BaseException("根据日期串解释出日期对象出现异常"+e);
+			throw new BaseException("根据日期串解释出日期对象出现异常"+e);
 		}
 	}
 	
@@ -946,5 +947,6 @@ public class DateUtil {
 
 		return DATE_TIME_FORMAT.format(d);
 	}
+
 
 }
