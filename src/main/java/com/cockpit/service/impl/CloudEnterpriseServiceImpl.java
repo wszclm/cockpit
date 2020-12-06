@@ -7,13 +7,13 @@ import com.cockpit.dao.CloudEnterpriseDao;
 import com.cockpit.model.CloudEnterpriseModel;
 import com.cockpit.model.EnterpriseModel;
 import com.cockpit.service.ICloudEnterpriseService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class CloudEnterpriseServiceImpl  extends ServiceImpl<CloudEnterpriseDao, CloudEnterpriseModel> implements ICloudEnterpriseService {
@@ -24,20 +24,19 @@ public class CloudEnterpriseServiceImpl  extends ServiceImpl<CloudEnterpriseDao,
     public void batchImport(List<String[]> list) throws BaseException {
         List<CloudEnterpriseModel> entityList = new ArrayList<>(list.size());
         for (String[] str : list) {
-
             CloudEnterpriseModel cloudEnterpriseModel = new CloudEnterpriseModel();
             if (str.length == 2) {
-                cloudEnterpriseModel.getTown(StringUtils.isEmpty(str[1]) ? " " : str[1]);
-                cloudEnterpriseModel.getNum(str[2].toString() ? " " : str[2]);
-                enterpriseModel.setCreateDate(new Date());
-                enterpriseModel.setUpdateDate(new Date());
+                cloudEnterpriseModel.setTown(StringUtils.isEmpty(str[1]) ? " " : str[1]);
+                cloudEnterpriseModel.setNum(StringUtils.isEmpty(str[2]) ? 0 : Long.valueOf(str[2]));
+                cloudEnterpriseModel.setCreateDate(new Date());
+                cloudEnterpriseModel.setUpdateDate(new Date());
                 // 只导入不存在的企业，根据统一认证的企业编号判断库中是否已经存在，若已经存在更新。
-                if (isExists(enterpriseModel)){
+                if (isExists(cloudEnterpriseModel)){
                     continue;
                 }
 
             }
-            entityList.add(enterpriseModel);
+            entityList.add(cloudEnterpriseModel);
         }
         if (entityList.size()==1000){
             this.saveBatch(entityList);
@@ -53,16 +52,41 @@ public class CloudEnterpriseServiceImpl  extends ServiceImpl<CloudEnterpriseDao,
      * @param enterpriseModel
      * @return
      */
-    public boolean isExists(EnterpriseModel enterpriseModel){
-        QueryWrapper<EnterpriseModel> wrapper = new QueryWrapper<EnterpriseModel>();
-        wrapper.eq("enterPrise_name",enterpriseModel.getEnterPriseName());
-        EnterpriseModel res =  this.getOne(wrapper);
+    public boolean isExists(CloudEnterpriseModel cloudEnterpriseModel){
+        QueryWrapper<CloudEnterpriseModel> wrapper = new QueryWrapper<CloudEnterpriseModel>();
+        wrapper.eq("town",cloudEnterpriseModel.getTown());
+        CloudEnterpriseModel res =  this.getOne(wrapper);
         if (res!=null){
             this.update(wrapper);
             return true;
         }
         return false;
     }
+
+    public Map<String, Object> queryEnterpriseData(CloudEnterpriseModel cloudEnterpriseModel) throws BaseException {
+        int pageNo = 15;
+        int pageSize = 0;
+        Map<String, Object> resultMap = new HashMap<>();
+        QueryWrapper<CloudEnterpriseModel> wrapper = new QueryWrapper<CloudEnterpriseModel>();
+        Page page = PageHelper.startPage(pageNo, pageSize,true);
+        List<CloudEnterpriseModel> list =  cloudEnterpriseDao.selectList(wrapper);
+        Map<String,Object> pager = new HashMap<>();
+        resultMap.put("data", list);
+        resultMap.put("total",page.getTotal());
+        return resultMap;
+    }
+
+
+
+    public void deleteEnterpriseData(List<String> ids) throws BaseException {
+        QueryWrapper<CloudEnterpriseModel> wrapper = new QueryWrapper<CloudEnterpriseModel>();
+
+        if (ids.size()>0){
+            wrapper.in("id",ids);
+        }
+        this.removeByIds(ids);
+    }
+
 
 }
 
