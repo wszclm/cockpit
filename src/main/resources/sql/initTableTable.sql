@@ -21,7 +21,7 @@ DROP TABLE IF EXISTS `cloud_enterprise`;
 CREATE TABLE `cloud_enterprise` (
   `ID` varchar(35) COLLATE utf8mb4_bin NOT NULL COMMENT '主键ID',
   `TOWN` varchar(500) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '所在乡镇',
-  `NUM` decimal(18,0) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '数量',
+  `NUM` decimal(18,0)  DEFAULT NULL COMMENT '数量',
   `CREATE_DATE` datetime DEFAULT NULL COMMENT '记录首次创建的时间。',
   `UPDATE_DATE` datetime DEFAULT NULL COMMENT '记录每次修改的时间。',
   `REMARK` varchar(2000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '记录备注。',
@@ -39,4 +39,3 @@ CREATE TABLE `user` (
   `remark` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8;
-
