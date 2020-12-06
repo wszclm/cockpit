@@ -15,7 +15,7 @@ CREATE TABLE `enterprise` (
   `REMARK` varchar(2000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '记录备注。',
   PRIMARY KEY (`ID`),
   KEY `idx_enterprise_name_createtime` (`ENTERPRISE_NAME`)
-) ENGINE=InnoDB DEFAULT AUTO_INCREMENT=100  CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='企业信息';
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 COMMENT='企业信息';
 
 DROP TABLE IF EXISTS `cloud_enterprise`;
 CREATE TABLE `cloud_enterprise` (
@@ -27,5 +27,16 @@ CREATE TABLE `cloud_enterprise` (
   `REMARK` varchar(2000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '记录备注。',
   PRIMARY KEY (`ID`),
   KEY `idx_ID` (`ID`)
-) ENGINE=InnoDB DEFAULT AUTO_INCREMENT=100  CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='企上云数量';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='企上云数量';
+
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'UserID',
+  `name` varchar(32) DEFAULT NULL COMMENT '姓名',
+  `telephone` varchar(16) DEFAULT NULL COMMENT '住宅电话',
+  `username` varchar(255) DEFAULT NULL COMMENT '用户名',
+  `password` varchar(255) DEFAULT NULL COMMENT '密码',
+  `remark` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8;
 
