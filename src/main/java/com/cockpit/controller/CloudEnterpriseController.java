@@ -73,8 +73,6 @@ public class CloudEnterpriseController {
         return result;
     }
 
-
-
     @ApiModel
     class CloudEnterpriseDataModeVo implements Serializable {
 
@@ -123,8 +121,6 @@ public class CloudEnterpriseController {
         return result;
     }
 
-
-
     // 上云企业数据删除
     @ApiOperation(value = "上云企业数据删除", notes = "上云企业数据删除")
     @RequestMapping(value = "/cloudenterprise/deleteByCode", method = RequestMethod.DELETE)
@@ -141,5 +137,4 @@ public class CloudEnterpriseController {
         }
         return result;
     }
-
 }
