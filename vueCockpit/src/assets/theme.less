@@ -1,0 +1,113 @@
+@charset "UTF-8";
+@import (reference) "./base.less";
+
+/**
+ * 集团样式
+ */
+/*重新定义基础色*/
+@color-red: #f96868;
+@color-light-red: #fa7a7a;
+@color-dark-red: #e9595b;
+
+@color-blue: #62a8ea;
+@color-light-blue: #89bceb;
+@color-dark-blue: #4e97d9;
+
+@color-sky-blue:#00B9E5;
+
+@color-green: #46be8a;
+@color-light-green: #5cd29d;
+@color-dark-green: #36ab7a;
+
+@color-orange: #f2a654;
+@color-light-orange: #f4b066;
+@color-dark-orange: #e79857;
+
+/*黑色*/
+
+@color-light-black: #37474F;
+@color-extra-light-black: #526069;
+@color-black: #263238;
+@color-heavy-black: darken(#263238,20%); 
+@color-extra-heavy-black: darken(#263238,50%); 
+
+/*银色*/
+@color-silver: #76838F; 
+@color-light-silver: #A3AFB7; 
+@color-extra-light-silver: #CCD5DB;
+
+@color-input-placeholder: #CCD5DB;
+
+/*灰色*/
+@color-heavy-gray: darken(#CCD5DB,20%); 
+@color-gray: #CCD5DB;
+@color-light-gray: #E4EAEC;
+@color-extra-light-gray: #F3F7F9;
+
+/*白色*/
+@color-dark-white: #f9fafc;
+@color-white: #FFF;
+@color-light-white: #F6F6F6;
+/*
+ * 蓝黑混合色
+ */
+@color-heavy-dark-mix-blue:#2F3B4C;
+@color-heavy-dark-mix-blue-lighter:lighten(@color-heavy-dark-mix-blue, 40%);
+@color-heavy-dark-mix-blue-darken:darken(@color-heavy-dark-mix-blue, 8%);
+
+/*主题颜色*/
+@primary-frame-color: @color-blue;    //系统框架色调，用于需要突出的背景色，按钮和ICON（如系统左侧一级导航，关键按钮，操作icon，出错提示）
+@primary-frame-second-color: @color-blue; //系统第二主色调（如面包屑导航，按钮，操作icon，文字链接  段落标题）
+
+@navbar-brand-font-color:@color-white;
+
+/*按钮颜色*/
+@primary-color: @primary-frame-color;
+@dark-primary-color: @color-dark-blue;
+@light-primary-color: @color-light-blue;
+
+@info-color: #57c7d4;
+@dark-info-color: #47b8c6e;
+@light-info-color: #77d6e1;
+
+@success-color: @color-green;
+@dark-success-color: @color-dark-green;
+@light-success-color: @color-light-green;
+
+@warning-color: @color-orange;
+@dark-warning-color: @color-dark-orange;
+@light-warning-color: @color-light-orange;
+
+@danger-color: @color-red;
+@dark-danger-color: @color-dark-red;
+@light-danger-color: @color-light-red;
+
+/*边框颜色*/
+@border-color-light:#E4EAEC;
+/*
+ * 页面内容区 背景颜色
+ */
+@page-content-background:@color-light-white;
+/*
+ * 页面菜单区 背景颜色
+ */
+@page-content-menu-background:@color-heavy-dark-mix-blue;
+@page-content-menu-background-darken:@color-heavy-dark-mix-blue-darken;
+@page-content-menu-icon-color:rgba(163,175,183,.9);
+@page-content-menu-font-color:rgba(163,175,183,.9);
+
+/**
+ * 发布管理-脚本详情-sql颜色
+ */
+@color-sql-keyword:#aa0d91;
+@colored-sql-number:#1c00cf;
+
+/**
+ * 表格头部颜色
+ */
+@color-background-table-header:@color-white;
+
+/**
+ * 配置单编辑左侧 销售品信息栏 背景颜色
+ */
+@color-background-offerList:#F2F3F5;

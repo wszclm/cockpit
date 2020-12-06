@@ -1,0 +1,61 @@
+/*
+ * 基础样式定义
+ * 1. 颜色定义
+ *    1) 基本颜色
+ *    2) 主题颜色
+ */
+
+/*颜色定义*/
+/*基础颜色*/
+@color-red: #E7314D;
+@color-light-red: #EC5A71;
+@color-dark-red: #CF2C45;
+@color-blue: #4E98CB;
+@color-light-blue: #71ADD5;
+@color-dark-blue: #4689B6;
+@color-sky-blue:#00B9E5;
+@color-green: #3DB8A5;
+@color-light-green: #64C6B7;
+@color-dark-green: #37A594;
+@color-orange: #Ef9D57;
+@color-light-orange: #F3B37C;
+@color-dark-orange: #D78D4E;
+
+/*黑色*/
+
+@color-light-black: lighten(#37485E,20%); //#37485E
+@color-extra-light-black: lighten(#37485E,50%); //#475669
+@color-black: #37485E;
+@color-heavy-black: darken(#37485E,20%); //#37485E
+@color-extra-heavy-black: darken(#37485E,50%); //#47566
+
+/*银色*/
+@color-silver: #6C7583;
+@color-light-silver: #6C7583; //#99A9BF
+@color-extra-light-silver: #D8DCDE; //#C0CCDA
+@color-input-placeholder:#bbb;
+
+/*灰色*/
+@color-heavy-gray: #838A95;
+@color-gray: #D8DCDE;
+@color-light-gray: #EDF0F5;
+@color-extra-light-gray: #EDF0F5; //#EFF2F7
+
+/*白色*/
+@color-dark-white: #FAFBFC;
+@color-white: #FFF;
+@color-light-white:#F6F6F6;
+/*
+ * 蓝黑混合色
+ */
+@color-heavy-dark-mix-blue:#2F3B4C;
+@color-heavy-dark-mix-blue-lighter:lighten(@color-heavy-dark-mix-blue, 40%);
+@color-heavy-dark-mix-blue-darken:darken(@color-heavy-dark-mix-blue, 8%);
+
+
+/*阴影函数*/
+.box-shadow (@x: 0px, @y: 2px, @blur: 2px, @alpha: 0.5) {
+  -webkit-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+  -moz-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+  box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+}

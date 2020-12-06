@@ -35,7 +35,7 @@ public class Swagger2Config {
                 .useDefaultResponseMessages(false)
                 .forCodeGeneration(true)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("cockpit"))
+                .apis(RequestHandlerSelectors.basePackage("com.cockpit"))
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
                 .build().globalOperationParameters(pars);
