@@ -2,7 +2,7 @@ let proxyObj = {};
 const CompressionPlugin = require("compression-webpack-plugin");
 proxyObj['/apis'] = {
     ws: false,
-    target: 'http://localhost:8090/mujun-mng-service/',
+    target: 'http://localhost:8080/cockpit/',
     changeOrigin: true,
     pathRewrite: {
         '^/apis/': ''
@@ -13,7 +13,7 @@ module.exports = {
     // publicPath:"http://localhost:8001/api/service",
     devServer: {
         host: 'localhost',
-        port: 8070,
+        port: 8090,
         proxy: proxyObj
     },
     configureWebpack: config => {

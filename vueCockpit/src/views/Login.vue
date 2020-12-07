@@ -55,6 +55,7 @@
                 this.vcUrl = '/apis/verifyCode?time='+new Date();
             },
             submitLogin() {
+/*                this.$router.replace('/home');*/
                 this.$refs.loginForm.validate((valid) => {
                     if (true) {
                         this.loading = true;
