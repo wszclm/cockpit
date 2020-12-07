@@ -24,16 +24,22 @@
             <el-container>
                 <el-aside width="200px">
                     <el-menu router unique-opened>
+<!--
                         <el-submenu :index="index+''" v-for="(item,index) in routes" v-if="!item.hidden" :key="index">
-                            <template slot="title">
+-->
+<!--                            <template slot="title">
                                 <i style="color: #409eff;margin-right: 5px" :class="item.iconCls"></i>
                                 <span>{{item.name}}</span>
-                            </template>
-                            <el-menu-item :index="child.path" v-for="(child,indexj) in item.children" :key="indexj">
+                            </template>-->
+<!--                            <el-menu-item :index="child.path" v-for="(child,indexj) in item.children" :key="indexj">
                                 <i style="color: #409eff;margin-right: 5px" :class="child.iconCls"></i>
                                <span> {{child.name}} </span>
-                            </el-menu-item>
-                        </el-submenu>
+                            </el-menu-item>-->
+                          <el-menu-item :index="item.path" v-for="(item,index) in routes" v-if="!item.hidden" :key="index">
+                            <i style="color: #409eff;margin-right: 5px" ></i>
+                            <span> {{item.name}} </span>
+                          </el-menu-item>
+<!--                        </el-submenu>-->
                     </el-menu>
                 </el-aside>
                 <el-main>

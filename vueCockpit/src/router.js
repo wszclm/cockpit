@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/Login.vue'
 import Home from './views/Home.vue'
-import userInfo from './views/UserInfo.vue'
 import MainEvaluateMethod from './views/dataMaintain/MainEvaluateMethod.vue'
 import Indicators from './views/dataMaintain/MainIndicators.vue'
+import DataEnterprise from './views/dataImport/DataEnterprise.vue'
 
 Vue.use(Router)
 
@@ -25,21 +25,27 @@ export default new Router({
             },
             children: [
                 {
-                    path: '/userInfo',
-                    name: '个人中心',
-                    component: userInfo,
+                    path: '/dataImport/dataEnterprise',
+                    name: '上云企业',
+                    component:DataEnterprise,
                     hidden: true
                 },
                 {
-                    path: '/indicators',
-                    name: '新增评价办法',
-                    component:Indicators,
+                    path: '/dataImport/dataCount',
+                    name: '企业信息',
+                    component:DataEnterprise,
                     hidden: true
                 },
                 {
-                    path: '/mainEvaluateMethod',
-                    name: '综合评价办法',
-                    component:MainEvaluateMethod,
+                    path: '/dataImport/dataEnterprise',
+                    name: '隐患整改分析',
+                    component:DataEnterprise,
+                    hidden: true
+                },
+                {
+                    path: '/dataImport/dataEnterpriseLease',
+                    name: '隐患分类分析',
+                    component:DataEnterprise,
                     hidden: true
                 }
             ]

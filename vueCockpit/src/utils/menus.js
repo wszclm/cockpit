@@ -1,19 +1,71 @@
-import {getRequest} from "./api";
+import {getRequest, postRequest} from "./api";
 
 export const initMenu = (router, store) => {
     if (store.state.routes.length > 0) {
         return;
     }
-    getRequest("/apis/system/config/menu").then(data => {
-        if (data) {
-            let fmtRoutes = formatRoutes(data);
-            router.addRoutes(fmtRoutes);
-            store.commit('initRoutes', fmtRoutes);
-            store.dispatch('connect');
+    debugger
+    const data=[
+        {
+            "component": "DataEnterprise",
+            "enabled": true,
+            "iconCls": "fa fa-laptop",
+            "id": 2,
+            "meta": {
+                "requireAuth": true
+            },
+            "name": "上云企业",
+            "parentId": 1,
+            "path": "/dataImport/dataEnterprise",
+            "url": "/"
+        },
+        {
+            "component": "DataCount",
+            "enabled": true,
+            "iconCls": "fa fa-legal",
+            "id": 3,
+            "meta": {
+                "requireAuth": true
+            },
+            "name": "企业信息",
+            "parentId": 1,
+            "path": "/dataImport/dataCount",
+            "url": "/"
+        },
+        {
+            "component": "DataEnterprise",
+            "enabled": true,
+            "iconCls": "fa fa-leanpub",
+            "id": 4,
+            "meta": {
+                "requireAuth": true
+            },
+            "name": "隐患整改分析",
+            "parentId": 1,
+            "path": "/dataImport/dataEnterprise",
+            "url": "/"
+        },
+        {
+            "component": "DataEnterpriseLease",
+            "enabled": true,
+            "iconCls": "fa fa-windows",
+            "id": 6,
+            "meta": {
+                "requireAuth": true
+            },
+            "name": "隐患分类分析",
+            "parentId": 1,
+            "path": "/dataImport/dataEnterpriseLease",
+            "url": "/"
         }
-    })
+    ];
+    let fmtRoutes = formatRoutes(data);
+    router.addRoutes(fmtRoutes);
+    store.commit('initRoutes', fmtRoutes);
+    store.dispatch('connect');
 }
 export const formatRoutes = (routes) => {
+    debugger
     let fmRoutes = [];
     routes.forEach(router => {
         let {
