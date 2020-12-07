@@ -4,68 +4,170 @@ export const initMenu = (router, store) => {
     if (store.state.routes.length > 0) {
         return;
     }
-    debugger
     const data=[
-        {
-            "component": "DataEnterprise",
-            "enabled": true,
-            "iconCls": "fa fa-laptop",
-            "id": 2,
-            "meta": {
-                "requireAuth": true
-            },
-            "name": "上云企业",
-            "parentId": 1,
-            "path": "/dataImport/dataEnterprise",
-            "url": "/"
+    {
+        "component": "DataCloudEnterprise",
+        "enabled": true,
+        "iconCls": "fa fa-laptop",
+        "id": 1,
+        "meta": {
+            "requireAuth": true
         },
-        {
-            "component": "DataCount",
-            "enabled": true,
-            "iconCls": "fa fa-legal",
-            "id": 3,
-            "meta": {
-                "requireAuth": true
-            },
-            "name": "企业信息",
-            "parentId": 1,
-            "path": "/dataImport/dataCount",
-            "url": "/"
+        "name": "上云企业",
+        "parentId": 1,
+        "path": "/dataImport/dataCloudEnterprise",
+        "url": "/"
+    },
+    {
+        "component": "DataEnterprise",
+        "enabled": true,
+        "iconCls": "fa fa-legal",
+        "id": 2,
+        "meta": {
+            "requireAuth": true
         },
-        {
-            "component": "DataEnterprise",
-            "enabled": true,
-            "iconCls": "fa fa-leanpub",
-            "id": 4,
-            "meta": {
-                "requireAuth": true
-            },
-            "name": "隐患整改分析",
-            "parentId": 1,
-            "path": "/dataImport/dataEnterprise",
-            "url": "/"
+        "name": "企业信息",
+        "parentId": 1,
+        "path": "/dataImport/dataEnterprise",
+        "url": "/"
+    },
+    {
+        "component": "DataHidDangerClass",
+        "enabled": true,
+        "iconCls": "fa fa-leanpub",
+        "id": 3,
+        "meta": {
+            "requireAuth": true
         },
+        "name": "隐患整改分析",
+        "parentId": 1,
+        "path": "/dataImport/dataHidDangerChange",
+        "url": "/"
+    },
+    {
+        "component": "DataHidDangerClass",
+        "enabled": true,
+        "iconCls": "fa fa-windows",
+        "id": 4,
+        "meta": {
+            "requireAuth": true
+        },
+        "name": "隐患分类分析",
+        "parentId": 1,
+        "path": "/dataImport/dataHidDangerClass",
+        "url": "/"
+    },
         {
-            "component": "DataEnterpriseLease",
-            "enabled": true,
-            "iconCls": "fa fa-windows",
-            "id": 6,
-            "meta": {
-                "requireAuth": true
-            },
-            "name": "隐患分类分析",
-            "parentId": 1,
-            "path": "/dataImport/dataEnterpriseLease",
-            "url": "/"
-        }
-    ];
+        "component": "DataCoreMonitor",
+        "enabled": true,
+        "iconCls": "fa fa-windows",
+        "id": 4,
+        "meta": {
+            "requireAuth": true
+        },
+        "name": "核心指标监测",
+        "parentId": 1,
+        "path": "/dataImport/dataCoreMonitor",
+        "url": "/"
+    },
+        {
+        "component": "DataHidDangerClass",
+        "enabled": true,
+        "iconCls": "fa fa-windows",
+        "id": 4,
+        "meta": {
+            "requireAuth": true
+        },
+        "name": "智能预警",
+        "parentId": 1,
+        "path": "/dataImport/dataHidDangerClass",
+        "url": "/"
+    },
+        {
+        "component": "DataSafeHiddenTrouble",
+        "enabled": true,
+        "iconCls": "fa fa-windows",
+        "id": 4,
+        "meta": {
+            "requireAuth": true
+        },
+        "name": "安全隐患",
+        "parentId": 1,
+        "path": "/dataImport/dataSafeHiddenTrouble",
+        "url": "/"
+    },
+        {
+        "component": "DataSafetyCode",
+        "enabled": true,
+        "iconCls": "fa fa-windows",
+        "id": 4,
+        "meta": {
+            "requireAuth": true
+        },
+        "name": "安全生产码",
+        "parentId": 1,
+        "path": "/dataImport/dataSafetyCode",
+        "url": "/"
+    },
+        {
+        "component": "DataSmokeInterface",
+        "enabled": true,
+        "iconCls": "fa fa-windows",
+        "id": 4,
+        "meta": {
+            "requireAuth": true
+        },
+        "name": "烟感接口",
+        "parentId": 1,
+        "path": "/dataImport/dataSmokeInterface",
+        "url": "/"
+    },
+        {
+        "component": "DataVideoInterface",
+        "enabled": true,
+        "iconCls": "fa fa-windows",
+        "id": 4,
+        "meta": {
+            "requireAuth": true
+        },
+        "name": "视屏接口",
+        "parentId": 1,
+        "path": "/dataImport/dataVideoInterface",
+        "url": "/"
+    },
+        {
+        "component": "DataHumidity",
+        "enabled": true,
+        "iconCls": "fa fa-windows",
+        "id": 4,
+        "meta": {
+            "requireAuth": true
+        },
+        "name": "温湿数据",
+        "parentId": 1,
+        "path": "/dataImport/DataHumidity",
+        "url": "/"
+    },
+        {
+        "component": "DataUserManage",
+        "enabled": true,
+        "iconCls": "fa fa-windows",
+        "id": 4,
+        "meta": {
+            "requireAuth": true
+        },
+        "name": "用户管理",
+        "parentId": 1,
+        "path": "/dataImport/dataUserManage",
+        "url": "/"
+    }
+];
     let fmtRoutes = formatRoutes(data);
     router.addRoutes(fmtRoutes);
     store.commit('initRoutes', fmtRoutes);
     store.dispatch('connect');
 }
 export const formatRoutes = (routes) => {
-    debugger
     let fmRoutes = [];
     routes.forEach(router => {
         let {
