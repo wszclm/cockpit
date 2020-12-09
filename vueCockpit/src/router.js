@@ -2,10 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/Login.vue'
 import Home from './views/Home.vue'
-import MainEvaluateMethod from './views/dataMaintain/MainEvaluateMethod.vue'
-import Indicators from './views/dataMaintain/MainIndicators.vue'
 import DataEnterprise from './views/dataImport/DataEnterprise.vue'
-
+import DataCloudEnterprise from './views/dataImport/DataCloudEnterprise.vue'
+import DataCoreMonitor from './views/dataImport/DataCoreMonitor.vue'
+import DataIntelligentTip from './views/dataImport/DataIntelligentTip.vue'
+import DataSafeHiddenTrouble from './views/dataImport/DataSafeHiddenTrouble'
+import DataSafetyCode from './views/dataImport/DataSafetyCode'
 Vue.use(Router)
 
 export default new Router({
@@ -25,13 +27,13 @@ export default new Router({
             },
             children: [
                 {
-                    path: '/dataImport/dataEnterprise',
+                    path: '/dataImport/dataCloudEnterprise',
                     name: '上云企业',
-                    component:DataEnterprise,
+                    component:DataCloudEnterprise,
                     hidden: true
                 },
                 {
-                    path: '/dataImport/dataCount',
+                    path: '/dataImport/dataEnterprise',
                     name: '企业信息',
                     component:DataEnterprise,
                     hidden: true
@@ -46,6 +48,30 @@ export default new Router({
                     path: '/dataImport/dataEnterpriseLease',
                     name: '隐患分类分析',
                     component:DataEnterprise,
+                    hidden: true
+                },
+                {
+                    path: '/dataImport/DataCoreMonitor',
+                    name: '核心指标监测',
+                    component:DataCoreMonitor,
+                    hidden: true
+                },
+                {
+                    path: '/dataImport/DataIntelligentTip',
+                    name: '智能预警',
+                    component:DataIntelligentTip,
+                    hidden: true
+                },
+                {
+                    path: '/dataImport/DataSafeHiddenTrouble',
+                    name: '安全生产码',
+                    component:DataSafeHiddenTrouble,
+                    hidden: true
+                },
+                {
+                    path: '/dataImport/DataSafetyCode',
+                    name: '安全生产码',
+                    component:DataSafetyCode,
                     hidden: true
                 }
             ]

@@ -4,14 +4,14 @@
             <el-header class="homeHeader">
                 <div class="title" >
                     <span class="el-dropdown-link"> <i>
-                        <img style=" width: 340px;height: 70px" src="../../public/yun.png" alt="">
-                        </i> 工业企业综合评价系统</span>
+                        <!-- /<img style=" width: 340px;height: 70px" src="../../public/yun.png" alt=""> -->
+                        </i> 羿顿驾驶舱后台管理</span>
                     </div>
                 <div>
                     <el-button icon="el-icon-bell" type="text" style="margin-right: 8px;color: #000000;" size="normal" ></el-button>
                     <el-dropdown class="userInfo" @command="commandHandler">
   <span class="el-dropdown-link">
-   欢迎您， {{user.name}}<i><img src="../../public/jingyi.jpg" alt=""></i>
+   欢迎您来到羿顿驾驶舱后台<i><img src="../../public/jingyi.jpg" alt=""></i>
   </span>
                         <el-dropdown-menu slot="dropdown">
                             <el-dropdown-item command="userinfo">个人中心</el-dropdown-item>
@@ -24,17 +24,6 @@
             <el-container>
                 <el-aside width="200px">
                     <el-menu router unique-opened>
-<!--
-                        <el-submenu :index="index+''" v-for="(item,index) in routes" v-if="!item.hidden" :key="index">
--->
-<!--                            <template slot="title">
-                                <i style="color: #409eff;margin-right: 5px" :class="item.iconCls"></i>
-                                <span>{{item.name}}</span>
-                            </template>-->
-<!--                            <el-menu-item :index="child.path" v-for="(child,indexj) in item.children" :key="indexj">
-                                <i style="color: #409eff;margin-right: 5px" :class="child.iconCls"></i>
-                               <span> {{child.name}} </span>
-                            </el-menu-item>-->
                           <el-menu-item :index="item.path" v-for="(item,index) in routes" v-if="!item.hidden" :key="index">
                             <i style="color: #409eff;margin-right: 5px" ></i>
                             <span> {{item.name}} </span>
@@ -48,7 +37,7 @@
                         <el-breadcrumb-item>{{this.$router.currentRoute.name}}</el-breadcrumb-item>
                     </el-breadcrumb>
                     <div class="homeWelcome" v-if="this.$router.currentRoute.path=='/home'">
-                        欢迎来到亩均评价系统！
+                        
                     </div>
                     <router-view class="homeRouterView"/>
                 </el-main>
@@ -71,7 +60,7 @@
                 return this.$store.state.routes;
             },
             user() {
-                return this.$store.state.currentHr;
+                return "";
             }
         },
         methods: {
@@ -83,8 +72,8 @@
                         type: 'warning'
                     }).then(() => {
                         this.getRequest("/apis/logout");
-                        window.sessionStorage.removeItem("user")
-                        this.$store.commit('initRoutes', []);
+                        // window.sessionStorage.removeItem("user")
+                        // this.$store.commit('initRoutes', []);
                         this.$router.replace("/");
                     }).catch(() => {
                         this.$message({
@@ -100,7 +89,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 #footer{width: 100%;position: fixed;z-index: 502;bottom: 0;left: 0;overflow: hidden;background: #f1f1f1;text-align: center;line-height: 30px; }
 .el-dropdown-link-im img {
     width: 48px;
@@ -112,6 +101,9 @@
         margin-top: 10px;
     }
 
+.el-menu-item{
+    height: 46px;
+}
     .homeWelcome {
         text-align: center;
         font-size: 30px;

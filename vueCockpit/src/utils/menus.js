@@ -1,9 +1,9 @@
 import {getRequest, postRequest} from "./api";
 
 export const initMenu = (router, store) => {
-    if (store.state.routes.length > 0) {
-        return;
-    }
+    // if (store.state.routes.length > 0) {
+    //     return;
+    // }
     const data=[
     {
         "component": "DataCloudEnterprise",
@@ -56,6 +56,18 @@ export const initMenu = (router, store) => {
         "parentId": 1,
         "path": "/dataImport/dataHidDangerClass",
         "url": "/"
+    },{
+        "component": "DataHidDangerClass",
+        "enabled": true,
+        "iconCls": "fa fa-windows",
+        "id": 4,
+        "meta": {
+            "requireAuth": true
+        },
+        "name": "风险等级分析",
+        "parentId": 1,
+        "path": "/dataImport/dataHidDangerClass",
+        "url": "/"
     },
         {
         "component": "DataCoreMonitor",
@@ -67,11 +79,11 @@ export const initMenu = (router, store) => {
         },
         "name": "核心指标监测",
         "parentId": 1,
-        "path": "/dataImport/dataCoreMonitor",
+        "path": "/dataImport/DataCoreMonitor",
         "url": "/"
     },
         {
-        "component": "DataHidDangerClass",
+        "component": "DataIntelligentTip",
         "enabled": true,
         "iconCls": "fa fa-windows",
         "id": 4,
@@ -80,7 +92,7 @@ export const initMenu = (router, store) => {
         },
         "name": "智能预警",
         "parentId": 1,
-        "path": "/dataImport/dataHidDangerClass",
+        "path": "/dataImport/DataIntelligentTip",
         "url": "/"
     },
         {
@@ -166,6 +178,8 @@ export const initMenu = (router, store) => {
     router.addRoutes(fmtRoutes);
     store.commit('initRoutes', fmtRoutes);
     store.dispatch('connect');
+    console.log(JSON.stringify(data));
+    window.sessionStorage.setItem("user", JSON.stringify(data));
 }
 export const formatRoutes = (routes) => {
     let fmRoutes = [];
@@ -190,17 +204,9 @@ export const formatRoutes = (routes) => {
             component(resolve) {
                 if (component.startsWith("Home")) {
                     require(['../views/' + component + '.vue'], resolve);
-                } else if (component.startsWith("Emp")) {
-                    require(['../views/emp/' + component + '.vue'], resolve);
-                }else if(component.startsWith("Sys")){
-                    console.log(component);
-                  require(['../views/sys/' + component + '.vue'], resolve);
                 }else if(component.startsWith("Data")){
                     console.log(component);
                     require(['../views/dataImport/' + component + '.vue'], resolve);
-                }else if(component.startsWith("Main")){
-                    console.log(component);
-                    require(['../views/dataMaintain/' + component + '.vue'], resolve);
                 }
             }
         }

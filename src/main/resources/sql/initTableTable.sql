@@ -26,7 +26,6 @@ CREATE TABLE `cloud_enterprise` (
   `UPDATE_DATE` datetime DEFAULT NULL COMMENT '记录每次修改的时间。',
   `REMARK` varchar(2000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '记录备注。',
   PRIMARY KEY (`ID`),
-  KEY `idx_ID` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='企上云数量';
 
 DROP TABLE IF EXISTS `user`;
@@ -84,7 +83,7 @@ DROP TABLE IF EXISTS `intelligent_tips`;
 CREATE TABLE `intelligent_tips` (
   `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `ENAME` varchar(200) DEFAULT NULL COMMENT '企业名称',
-  `SDENGER` varchar(1000) DEFAULT NULL COMMENT '安全隐患',
+  `SDANGER` varchar(1000) DEFAULT NULL COMMENT '安全隐患',
   `CREATE_DATE` datetime DEFAULT NULL COMMENT '记录首次创建的时间。',
   `UPDATE_DATE` datetime DEFAULT NULL COMMENT '记录每次修改的时间。',
   `REMARK` varchar(2000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '记录备注。',

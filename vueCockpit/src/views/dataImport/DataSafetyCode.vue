@@ -1,12 +1,12 @@
 <template>
     <div>
-        系统管理
+       安全生产码
     </div>
 </template>
 
 <script>
     export default {
-        name: "SysCfg"
+        name: "DataSafetyCode" // 安全生产码
     }
 </script>
 

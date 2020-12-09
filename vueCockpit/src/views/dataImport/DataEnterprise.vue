@@ -112,8 +112,7 @@
                 </div>
             </div>
         </div>
-        <DataEnterpriseLoad ref="dataEnterpriseLoad" :getTableData="getTableData"></DataEnterpriseLoad>
-        <DataEnterpriseAdd ref="dataEnterpriseAdd"  :year="year" :month="month" :getTableData="getTableData"></DataEnterpriseAdd>
+    
     </div>
 </template>
 <style scoped lang='less'>
@@ -155,9 +154,6 @@
 }
 </style>
 <script>
-import DataEnterpriseAdd from './DataEnterpriseAdd'
-import DataEnterpriseLoad from './DataEnterpriseLoad'
-
 
 export default {
     name: 'DataEnterprise',
@@ -340,9 +336,7 @@ export default {
     created() {
         this.getTableData();
     },
-    components: {
-        DataEnterpriseLoad,DataEnterpriseAdd
-    },
+   
     methods: {
         handleAddLabel() {
             this.$refs.dataEnterpriseAdd.show = true;

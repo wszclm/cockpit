@@ -131,7 +131,7 @@ router.beforeEach((to, from, next) => {
     if (to.path == '/') {
         next();
     } else {
-        if (window.sessionStorage.getItem("user")) {
+        if (true) {
             initMenu(router, store);
             next();
         } else {

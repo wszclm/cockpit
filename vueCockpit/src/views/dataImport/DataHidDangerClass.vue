@@ -1,12 +1,12 @@
 <template>
     <div>
-       系统用户管理
+       隐患整改分析
     </div>
 </template>
 
 <script>
     export default {
-        name: "MainFirstResult"  //初次评价结果
+        name: "DataHidDangerClass" // 隐患整改分析
     }
 </script>
 

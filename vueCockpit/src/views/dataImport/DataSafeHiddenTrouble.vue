@@ -1,12 +1,12 @@
 <template>
     <div>
-       最终评价结果
+       安全隐患
     </div>
 </template>
 
 <script>
     export default {
-        name: "MainLastResult" // 最终评价结果
+        name: "DataSafeHiddenTrouble" // 安全隐患
     }
 </script>
 

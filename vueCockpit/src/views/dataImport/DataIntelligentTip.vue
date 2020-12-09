@@ -1,12 +1,12 @@
 <template>
     <div>
-        奖惩规则
+       智能预警
     </div>
 </template>
 
 <script>
     export default {
-        name: "EcMana"
+        name: "DataIntelligentTip" // 智能预警
     }
 </script>
 
