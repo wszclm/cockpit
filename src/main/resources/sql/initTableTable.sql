@@ -89,3 +89,39 @@ CREATE TABLE `intelligent_tips` (
   `REMARK` varchar(2000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '记录备注。',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8;
+
+-- 隐患分类分析
+DROP TABLE IF EXISTS `hid_danger_class`;
+CREATE TABLE `hid_danger_class` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hid_danger_type` varchar(200) DEFAULT NULL COMMENT '隐患类型',
+  `hid_danger_num` decimal(10,0) DEFAULT NULL COMMENT '隐患数量',
+  `proportion` decimal(10,0) DEFAULT NULL COMMENT '比例',
+  `CREATE_DATE` datetime DEFAULT NULL,
+  `UPDATE_DATE` datetime DEFAULT NULL,
+  `REMARK` varchar(2000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- 风险等级分析
+DROP TABLE IF EXISTS `risk_level_analy`;
+CREATE TABLE `risk_level_analy` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ENTERPRISE_NAME` varchar(300) DEFAULT NULL COMMENT '公司名称',
+  `risk_level` varchar(200) DEFAULT NULL COMMENT '风险等级',
+  `CREATE_DATE` datetime DEFAULT NULL,
+  `UPDATE_DATE` datetime DEFAULT NULL,
+  `REMARK` varchar(2000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+--隐患整改分析
+DROP TABLE IF EXISTS `hid_danger_change`;
+CREATE TABLE `hid_danger_change` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `treatment` varchar(200) DEFAULT NULL COMMENT '处理情况',
+  `hid_danger_num` decimal(10,0) DEFAULT NULL COMMENT '隐患数量',
+  `proportion` decimal(10,0) DEFAULT NULL COMMENT '比例',
+  `CREATE_DATE` datetime DEFAULT NULL,
+  `UPDATE_DATE` datetime DEFAULT NULL,
+  `REMARK` varchar(2000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
