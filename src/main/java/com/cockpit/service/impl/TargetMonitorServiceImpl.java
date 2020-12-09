@@ -26,9 +26,9 @@ public class TargetMonitorServiceImpl extends ServiceImpl<TargetMonitorDao,Targe
         for (String[] str : list) {
             TargetMonitorModel targetMonitorModel = new TargetMonitorModel();
             if (str.length == 3) {
-                targetMonitorModel.setEcount(StringUtils.isEmpty(str[1]) ? " " : str[1]);
-                targetMonitorModel.setHascheck(StringUtils.isEmpty(str[2]) ? 0L : Long.valueOf(str[2]));
-                targetMonitorModel.setNotcheck(StringUtils.isEmpty(str[3]) ? 0L : Long.valueOf(str[3]));
+                targetMonitorModel.setEcount(StringUtils.isEmpty(str[0]) ? " " : str[0]);
+                targetMonitorModel.setHascheck(StringUtils.isEmpty(str[1]) ? 0L : Long.valueOf(str[1]));
+                targetMonitorModel.setNotcheck(StringUtils.isEmpty(str[2]) ? 0L : Long.valueOf(str[2]));
                 targetMonitorModel.setCreateDate(new Date());
                 targetMonitorModel.setUpdateDate(new Date());
                 // 只导入不存在的企业，根据统一认证的企业编号判断库中是否已经存在，若已经存在更新。
@@ -44,6 +44,7 @@ public class TargetMonitorServiceImpl extends ServiceImpl<TargetMonitorDao,Targe
             entityList.clear();
 
         }
+        this.remove(new QueryWrapper<TargetMonitorModel>());
         this.saveBatch(entityList);
     }
 
@@ -82,7 +83,9 @@ public class TargetMonitorServiceImpl extends ServiceImpl<TargetMonitorDao,Targe
         wrapper.eq("notcheck",targetMonitorModel.getNotcheck());
         TargetMonitorModel res =  this.getOne(wrapper);
         if (res!=null){
-            this.update(wrapper);
+            QueryWrapper<TargetMonitorModel> wheremapper = new QueryWrapper<TargetMonitorModel>();
+            wheremapper.eq("id",res.getId());
+            this.update(targetMonitorModel,wrapper);
             return true;
         }
         return false;

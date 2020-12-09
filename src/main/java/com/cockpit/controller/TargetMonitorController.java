@@ -59,7 +59,7 @@ public class TargetMonitorController {
                 result.setMeta(HttpStatus.OK.value(),"");
             }
         } catch (Exception e) {
-            logger.debug("指标监测数据导入异常：{}", e.getMessage());
+            logger.debug("指标监测数据导入异常：{}", e);
             result.setMeta(HttpStatus.BAD_REQUEST.value(),"文件导入失败:"+e.getMessage());
             result.setInfo(resultList);
         }

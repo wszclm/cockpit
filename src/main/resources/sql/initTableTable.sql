@@ -57,8 +57,8 @@ CREATE TABLE `safecode` (
 DROP TABLE IF EXISTS `hidden_danger`;
 CREATE TABLE `hidden_danger` (
   `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `ENAME` decimal(18,0) DEFAULT NULL COMMENT '企业名称',
-  `CONTENT` decimal(18,0) DEFAULT NULL COMMENT '隐患内容',
+  `ENAME` varchar(1000) DEFAULT NULL COMMENT '企业名称',
+  `CONTENT` varchar(1000) DEFAULT NULL COMMENT '隐患内容',
   `CREATE_DATE` datetime DEFAULT NULL COMMENT '记录首次创建的时间。',
   `UPDATE_DATE` datetime DEFAULT NULL COMMENT '记录每次修改的时间。',
   `REMARK` varchar(2000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '记录备注。',
@@ -89,6 +89,3 @@ CREATE TABLE `intelligent_tips` (
   `REMARK` varchar(2000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '记录备注。',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8;
-
-
-

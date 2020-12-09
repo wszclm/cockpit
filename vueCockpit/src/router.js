@@ -64,7 +64,7 @@ export default new Router({
                 },
                 {
                     path: '/dataImport/DataSafeHiddenTrouble',
-                    name: '安全生产码',
+                    name: '安全隐患',
                     component:DataSafeHiddenTrouble,
                     hidden: true
                 },

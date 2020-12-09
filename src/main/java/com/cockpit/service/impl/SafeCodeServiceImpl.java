@@ -26,10 +26,10 @@ public class SafeCodeServiceImpl extends ServiceImpl<SafeCodeDao,SafeCodeModel> 
         for (String[] str : list) {
             SafeCodeModel safeCodeModel = new SafeCodeModel();
             if (str.length == 4) {
-                safeCodeModel.setRed(StringUtils.isEmpty(str[1]) ? " " : str[1]);
-                safeCodeModel.setOrange(StringUtils.isEmpty(str[2]) ? "" : str[2]);
-                safeCodeModel.setYellow(StringUtils.isEmpty(str[3]) ? " " : str[3]);
-                safeCodeModel.setGreen(StringUtils.isEmpty(str[4]) ? "" : str[4]);
+                safeCodeModel.setRed(StringUtils.isEmpty(str[0]) ? " " : str[0]);
+                safeCodeModel.setOrange(StringUtils.isEmpty(str[1]) ? "" : str[1]);
+                safeCodeModel.setYellow(StringUtils.isEmpty(str[2]) ? " " : str[2]);
+                safeCodeModel.setGreen(StringUtils.isEmpty(str[3]) ? "" : str[3]);
                 safeCodeModel.setCreateDate(new Date());
                 safeCodeModel.setUpdateDate(new Date());
                 // 只导入不存在的企业，根据统一认证的企业编号判断库中是否已经存在，若已经存在更新。
@@ -45,6 +45,7 @@ public class SafeCodeServiceImpl extends ServiceImpl<SafeCodeDao,SafeCodeModel> 
             entityList.clear();
 
         }
+        remove(new QueryWrapper<SafeCodeModel>());
         this.saveBatch(entityList);
     }
 
@@ -55,7 +56,6 @@ public class SafeCodeServiceImpl extends ServiceImpl<SafeCodeDao,SafeCodeModel> 
         QueryWrapper<SafeCodeModel> wrapper = new QueryWrapper<SafeCodeModel>();
         Page page = PageHelper.startPage(pageNo, pageSize,true);
         // 条件查询
-
         List<SafeCodeModel> list =  safeCodeDao.selectList(wrapper);
         Map<String,Object> pager = new HashMap<>();
         resultMap.put("data", list);
@@ -84,7 +84,9 @@ public class SafeCodeServiceImpl extends ServiceImpl<SafeCodeDao,SafeCodeModel> 
         wrapper.eq("green",safeCodeModel.getRed());
         SafeCodeModel res =  this.getOne(wrapper);
         if (res!=null){
-            this.update(wrapper);
+            QueryWrapper<SafeCodeModel> wheremapper = new QueryWrapper<SafeCodeModel>();
+            wheremapper.eq("id",res.getId());
+            this.update(safeCodeModel,wheremapper);
             return true;
         }
         return false;

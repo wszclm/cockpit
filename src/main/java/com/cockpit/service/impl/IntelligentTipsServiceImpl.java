@@ -26,8 +26,8 @@ public class IntelligentTipsServiceImpl extends ServiceImpl<IntelligentTipsDao,I
         for (String[] str : list) {
             IntelligentTipsModel intelligentTipsModel = new IntelligentTipsModel();
             if (str.length == 2) {
-                intelligentTipsModel.setEname(StringUtils.isEmpty(str[1]) ? " " : str[1]);
-                intelligentTipsModel.setSdanger(StringUtils.isEmpty(str[2]) ? "" : str[2]);
+                intelligentTipsModel.setEname(StringUtils.isEmpty(str[0]) ? " " : str[0]);
+                intelligentTipsModel.setSdanger(StringUtils.isEmpty(str[1]) ? "" : str[1]);
                 intelligentTipsModel.setCreateDate(new Date());
                 intelligentTipsModel.setUpdateDate(new Date());
                 // 只导入不存在的企业，根据统一认证的企业编号判断库中是否已经存在，若已经存在更新。
@@ -56,7 +56,9 @@ public class IntelligentTipsServiceImpl extends ServiceImpl<IntelligentTipsDao,I
         wrapper.eq("ename",intelligentTipsModel.getEname());
         IntelligentTipsModel res =  this.getOne(wrapper);
         if (res!=null){
-            this.update(wrapper);
+            QueryWrapper<IntelligentTipsModel> wheremapper = new QueryWrapper<IntelligentTipsModel>();
+            wheremapper.eq("id",res.getId());
+            this.update(intelligentTipsModel,wheremapper);
             return true;
         }
         return false;

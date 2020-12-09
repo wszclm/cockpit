@@ -25,8 +25,8 @@ public class HiddenDangerServiceImpl extends ServiceImpl<HiddenDangerDao,HiddenD
         for (String[] str : list) {
             HiddenDangerModel hiddenDangerModel = new HiddenDangerModel();
             if (str.length == 2) {
-                hiddenDangerModel.setEname(StringUtils.isEmpty(str[1]) ? " " : str[1]);
-                hiddenDangerModel.setContent(StringUtils.isEmpty(str[2]) ? "" : str[2]);
+                hiddenDangerModel.setEname(StringUtils.isEmpty(str[0]) ? " " : str[0]);
+                hiddenDangerModel.setContent(StringUtils.isEmpty(str[1]) ? "" : str[1]);
                 hiddenDangerModel.setCreateDate(new Date());
                 hiddenDangerModel.setUpdateDate(new Date());
                 // 只导入不存在的企业，根据统一认证的企业编号判断库中是否已经存在，若已经存在更新。
@@ -55,7 +55,9 @@ public class HiddenDangerServiceImpl extends ServiceImpl<HiddenDangerDao,HiddenD
         wrapper.eq("ename",hiddenDangerModel.getEname());
         HiddenDangerModel res =  this.getOne(wrapper);
         if (res!=null){
-            this.update(wrapper);
+            QueryWrapper<HiddenDangerModel> wheremapper = new QueryWrapper<HiddenDangerModel>();
+            wheremapper.eq("id",res.getId());
+            this.update(hiddenDangerModel,wheremapper);
             return true;
         }
         return false;
