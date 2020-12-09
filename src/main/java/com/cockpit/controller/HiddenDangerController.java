@@ -67,7 +67,7 @@ public class HiddenDangerController {
     }
 
     @ApiModel
-    class HiddenDangerVo implements Serializable {
+  static  class HiddenDangerVo implements Serializable {
         @ApiModelProperty(value = "创建时间")
         @JsonFormat(pattern ="yyyy-MM-dd")//数据库导出页面时json格式化
         @DateTimeFormat(pattern="yyyy-MM-dd")//页面写入数据库时格式化

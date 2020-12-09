@@ -36,7 +36,7 @@ public class SafeCodeController {
 
 
     @ApiOperation(value = "安全生产码数据导入", notes = "安全生产码数据导入")
-    @RequestMapping(value = "/SafeCode/batchImport", method = RequestMethod.POST)
+    @RequestMapping(value = "/safeCode/batchImport", method = RequestMethod.POST)
     public RestResult batchQueryInstType(@RequestParam("file") MultipartFile file, Model model, HttpServletRequest req ) {
         RestResult result = new RestResult();
         List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
@@ -69,7 +69,7 @@ public class SafeCodeController {
 
 
     @ApiModel
-    class SafeCodeVo implements Serializable {
+   static class SafeCodeVo implements Serializable {
 
         @ApiModelProperty(value = "创建时间")
         @JsonFormat(pattern ="yyyy-MM-dd")//数据库导出页面时json格式化

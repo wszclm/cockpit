@@ -10,8 +10,10 @@
                           <el-col>
                            <el-upload
                                     ref="upload"
-                                    action='/apis/leaseMng/batchImport' 
+                                    action='/targetMonitor/batchImport' 
                                     :with-credentials='true' 
+                                    :on-progress='onUploadProgress'
+                                    :on-success='mtdUploadSuccess'
                                     list-type="file">
                                     <el-button size="small" type="primary" v-loading="fileImporting">点击上传</el-button>
                             </el-upload>
@@ -20,10 +22,11 @@
                 <el-row :gutter='10' style='margin-top: 1%;'>
                     <el-col :span='24' >
                         <el-table ref="table" :data='tableData' :border=true :stripe=true v-loading='loading' @selection-change="changeFun" element-loading-text='拼命加载中'>
-                            <el-table-column type="selection" align='center' width='70' label='序号'></el-table-column>
-                            <el-table-column prop='parcelNum' align='center' label='企业总数' ></el-table-column>
-                            <el-table-column prop='enterPriseName' align='center' label='已巡检'></el-table-column>
-                            <el-table-column prop='createDate' align='center' label='未巡检'></el-table-column>
+                            <el-table-column type="selection" prop='id' align='center' width='70' label='序号'></el-table-column>
+                            <el-table-column prop='ecount' align='center' label='企业总数' ></el-table-column>
+                            <el-table-column prop='hascheck' align='center' label='已巡检'></el-table-column>
+                            <el-table-column prop='notcheck' align='center' label='未巡检'></el-table-column>
+                            <el-table-column prop='createDate' align='center' label='创建时间'></el-table-column>
                         </el-table>
                     </el-col>
                 </el-row>
@@ -40,7 +43,6 @@
         </div>
     </div>
 </template>
-
 <style scoped lang='less'>
 .title-font{
     font-size: 18px;
@@ -76,7 +78,6 @@
 }
 </style>
 
-
 <script>
 import {mymessage} from '@/utils/mymessage';
 import { Message } from 'element-ui';
@@ -89,6 +90,7 @@ export default {
             total: 0,
             cur_page: 1,
             pageSize:10,
+            fileImporting:false,
             name:'',
             tableData: [],
             selectRow:[],
@@ -97,23 +99,32 @@ export default {
             popVisible2: false,
             title: '',
             dialogVisible: false,
-            emp: {
-                parcelNum: "",
-                enterpriseName: "",
-                enterpriseCode: "",
-                leaseEnterpriseName: "",
-                leaseEnterpriseCode: "",
-                leaseEnterpriseArea: "",
-                leaseStartDate: "",
-                leaseEndDate: ""
-            },
         }
     },
     created() {
         this.getTableData();
     },
     methods: {
-      
+          //文件上传后从response返回id,name写入attach_files
+        mtdUploadSuccess:function(res, file, fileList){
+            try{
+                if(!!res.meta.statusCd && res.meta.statusCd != '200'){
+                    this.$alert(res.meta.message,'上传失败')
+                }else{
+                    this.$alert(res.meta.message,'上传成功')
+                    this.$refs.upload.clearFiles();
+                    this.getTableData();
+                };
+            }catch(err){
+                this.$alert(res.message,'上传失败')
+            }finally{
+                this.$refs.upload.clearFiles();
+                this.fileImporting = false;
+            }
+        },
+        onUploadProgress: function () {
+            this.fileImporting = true;
+        },
         batchRemove(){
             this.$confirm('此操作将永久删除选中的企业租赁数据, 是否继续?', '提示', {
                 confirmButtonText: '确定',
@@ -128,8 +139,7 @@ export default {
                      this.$alert("请至少选择一条记录！"); 
                      return; 
                 }
-
-                this.deleteRequest(this.$CST.ENTERPRISE_LEASE_DEL,{ids:ids}).then(resp => {
+                this.deleteRequest('/targetMonitor/deleteById',{ids:ids}).then(resp => {
                      if(resp.meta.statusCd == -1 || resp.meta.statusCd == 400){
                         // mymessage.error({message: resp.meta.message? resp.meta.message : '添加失败!'});          
                             this.$alert("删除失败："+resp.meta.message,'Error');  
@@ -168,10 +178,10 @@ export default {
                     this.total = resp.info.total;
                     this.tableData = resp.info.data;
                 }else{
-                    this.alert('企业租赁数据查询失败：' + reason,'error')
+                    this.alert('数据查询失败：' + reason,'error')
                 }
             }).catch((reason) => {
-                this.alert('企业租赁数据查询失败：' + reason,'error')
+                this.alert('数据查询失败：' + reason,'error')
             }).finally(() => {
                 this.loaded = true;
                 this.loading = false;
