@@ -74,7 +74,7 @@ public class CloudEnterpriseController {
     }
 
     @ApiModel
-    class CloudEnterpriseDataModeVo implements Serializable {
+    static class CloudEnterpriseDataModeVo implements Serializable {
 
         @ApiModelProperty(value = "创建时间")
         @DateTimeFormat(pattern="yyyy-MM-dd")//页面写入数据库时格式化

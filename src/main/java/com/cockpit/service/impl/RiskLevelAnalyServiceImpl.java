@@ -30,8 +30,8 @@ public class RiskLevelAnalyServiceImpl extends ServiceImpl<RiskLevelAnalyDao,Ris
         for (String[] str : list) {
             RiskLevelAnalyModel riskLevelAnalyModel = new RiskLevelAnalyModel();
             if (str.length == 2) {
-                riskLevelAnalyModel.setEnterPriseName(StringUtils.isEmpty(str[1]) ? " " : str[1]);
-                riskLevelAnalyModel.setRiskLevel(StringUtils.isEmpty(str[2]) ? "" : str[2]);
+                riskLevelAnalyModel.setEnterPriseName(StringUtils.isEmpty(str[0]) ? " " : str[0]);
+                riskLevelAnalyModel.setRiskLevel(StringUtils.isEmpty(str[1]) ? "" : str[1]);
                 riskLevelAnalyModel.setCreateDate(new Date());
                 riskLevelAnalyModel.setUpdateDate(new Date());
                 // 只导入不存在的企业，根据统一认证的企业编号判断库中是否已经存在，若已经存在更新。
@@ -47,6 +47,7 @@ public class RiskLevelAnalyServiceImpl extends ServiceImpl<RiskLevelAnalyDao,Ris
             entityList.clear();
 
         }
+        remove(new QueryWrapper<RiskLevelAnalyModel>());
         this.saveBatch(entityList);
     }
 
@@ -55,13 +56,15 @@ public class RiskLevelAnalyServiceImpl extends ServiceImpl<RiskLevelAnalyDao,Ris
      * @param RiskLevelAnalyModel
      * @return
      */
-    public boolean isExists(RiskLevelAnalyModel RiskLevelAnalyModel){
+    public boolean isExists(RiskLevelAnalyModel riskLevelAnalyModel){
         QueryWrapper<RiskLevelAnalyModel> wrapper = new QueryWrapper<RiskLevelAnalyModel>();
-        wrapper.eq("enterPriseName",RiskLevelAnalyModel.getEnterPriseName());
-        wrapper.eq("riskLevel",RiskLevelAnalyModel.getRiskLevel());
+        wrapper.eq("enterPriseName",riskLevelAnalyModel.getEnterPriseName());
+        wrapper.eq("riskLevel",riskLevelAnalyModel.getRiskLevel());
         RiskLevelAnalyModel res =  this.getOne(wrapper);
         if (res!=null){
-            this.update(wrapper);
+        	QueryWrapper<RiskLevelAnalyModel> wheremapper = new QueryWrapper<RiskLevelAnalyModel>();
+            wheremapper.eq("id",res.getId());
+            this.update(riskLevelAnalyModel,wheremapper);
             return true;
         }
         return false;

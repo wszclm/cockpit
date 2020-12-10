@@ -90,7 +90,7 @@ public class EnterpriseDataController {
     }
 
     @ApiModel
-    class EnterpriseDataModeVo implements Serializable {
+    static class EnterpriseDataModeVo implements Serializable {
 
         @ApiModelProperty(value = "创建时间")
         @DateTimeFormat(pattern="yyyy-MM-dd")//页面写入数据库时格式化

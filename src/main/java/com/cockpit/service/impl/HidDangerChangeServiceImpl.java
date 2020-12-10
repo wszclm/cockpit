@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cockpit.commons.exception.BaseException;
 import com.cockpit.dao.HidDangerChangeDao;
+import com.cockpit.model.EnterpriseModel;
 import com.cockpit.model.HidDangerChangeModel;
 import com.cockpit.service.IHidDangerChangeService;
 import com.github.pagehelper.Page;
@@ -30,9 +31,9 @@ public class HidDangerChangeServiceImpl extends ServiceImpl<HidDangerChangeDao,H
         for (String[] str : list) {
             HidDangerChangeModel hidDangerChangeModel = new HidDangerChangeModel();
             if (str.length == 3) {
-                hidDangerChangeModel.setTreatment(StringUtils.isEmpty(str[1]) ? " " : str[1]);
-                hidDangerChangeModel.setHidDangerNum(StringUtils.isEmpty(str[2]) ? "" : str[2]);
-                hidDangerChangeModel.setProportion(StringUtils.isEmpty(str[3]) ? "" : str[3]);
+                hidDangerChangeModel.setTreatment(StringUtils.isEmpty(str[0]) ? " " : str[0]);
+                hidDangerChangeModel.setHidDangerNum(StringUtils.isEmpty(str[1]) ? "" : str[1]);
+                hidDangerChangeModel.setProportion(StringUtils.isEmpty(str[2]) ? "" : str[2]);
                 hidDangerChangeModel.setCreateDate(new Date());
                 hidDangerChangeModel.setUpdateDate(new Date());
                 // 只导入不存在的企业，根据统一认证的企业编号判断库中是否已经存在，若已经存在更新。
@@ -48,6 +49,7 @@ public class HidDangerChangeServiceImpl extends ServiceImpl<HidDangerChangeDao,H
             entityList.clear();
 
         }
+        remove(new QueryWrapper<HidDangerChangeModel>());
         this.saveBatch(entityList);
     }
 
@@ -56,15 +58,17 @@ public class HidDangerChangeServiceImpl extends ServiceImpl<HidDangerChangeDao,H
      * @param HidDangerChangeModel
      * @return
      */
-    public boolean isExists(HidDangerChangeModel HidDangerChangeModel){
+    public boolean isExists(HidDangerChangeModel hidDangerChangeModel){
         QueryWrapper<HidDangerChangeModel> wrapper = new QueryWrapper<HidDangerChangeModel>();
-        wrapper.eq("treatment",HidDangerChangeModel.getTreatment());
-        wrapper.eq("hidDangerNum",HidDangerChangeModel.getHidDangerNum());
-        wrapper.eq("proportion",HidDangerChangeModel.getProportion());
+        wrapper.eq("treatment",hidDangerChangeModel.getTreatment());
+        wrapper.eq("hidDangerNum",hidDangerChangeModel.getHidDangerNum());
+        wrapper.eq("proportion",hidDangerChangeModel.getProportion());
         HidDangerChangeModel res =  this.getOne(wrapper);
         if (res!=null){
-            this.update(wrapper);
-            return true;
+        	 QueryWrapper<HidDangerChangeModel> wheremapper = new QueryWrapper<HidDangerChangeModel>();
+             wheremapper.eq("id",res.getId());
+             this.update(hidDangerChangeModel,wheremapper);
+             return true;
         }
         return false;
     }

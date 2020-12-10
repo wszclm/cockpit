@@ -6,6 +6,8 @@ import com.cockpit.commons.exception.BaseException;
 import com.cockpit.dao.CloudEnterpriseDao;
 import com.cockpit.model.CloudEnterpriseModel;
 import com.cockpit.model.EnterpriseModel;
+import com.cockpit.model.HiddenDangerModel;
+import com.cockpit.model.SafeCodeModel;
 import com.cockpit.service.ICloudEnterpriseService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -26,8 +28,8 @@ public class CloudEnterpriseServiceImpl  extends ServiceImpl<CloudEnterpriseDao,
         for (String[] str : list) {
             CloudEnterpriseModel cloudEnterpriseModel = new CloudEnterpriseModel();
             if (str.length == 2) {
-                cloudEnterpriseModel.setTown(StringUtils.isEmpty(str[1]) ? " " : str[1]);
-                cloudEnterpriseModel.setNum(StringUtils.isEmpty(str[2]) ? 0 : Long.valueOf(str[2]));
+                cloudEnterpriseModel.setTown(StringUtils.isEmpty(str[0]) ? " " : str[0]);
+                cloudEnterpriseModel.setNum(StringUtils.isEmpty(str[1]) ? 0 : Long.valueOf(str[1]));
                 cloudEnterpriseModel.setCreateDate(new Date());
                 cloudEnterpriseModel.setUpdateDate(new Date());
                 // 只导入不存在的企业，根据统一认证的企业编号判断库中是否已经存在，若已经存在更新。
@@ -43,6 +45,7 @@ public class CloudEnterpriseServiceImpl  extends ServiceImpl<CloudEnterpriseDao,
             entityList.clear();
 
         }
+        remove(new QueryWrapper<CloudEnterpriseModel>());
         this.saveBatch(entityList);
     }
 
@@ -57,7 +60,9 @@ public class CloudEnterpriseServiceImpl  extends ServiceImpl<CloudEnterpriseDao,
         wrapper.eq("town",cloudEnterpriseModel.getTown());
         CloudEnterpriseModel res =  this.getOne(wrapper);
         if (res!=null){
-            this.update(wrapper);
+        	  QueryWrapper<CloudEnterpriseModel> wheremapper = new QueryWrapper<CloudEnterpriseModel>();
+              wheremapper.eq("id",res.getId());
+              this.update(cloudEnterpriseModel,wheremapper);
             return true;
         }
         return false;

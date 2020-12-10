@@ -30,9 +30,9 @@ public class HidDangerClassServiceImpl extends ServiceImpl<HidDangerClassDao,Hid
         for (String[] str : list) {
             HidDangerClassModel hidDangerClassModel = new HidDangerClassModel();
             if (str.length == 3) {
-                hidDangerClassModel.setHidDangerType(StringUtils.isEmpty(str[1]) ? " " : str[1]);
-                hidDangerClassModel.setHidDangerNum(StringUtils.isEmpty(str[2]) ? "" : str[2]);
-                hidDangerClassModel.setProportion(StringUtils.isEmpty(str[3]) ? "" : str[3]);
+                hidDangerClassModel.setHidDangerType(StringUtils.isEmpty(str[0]) ? " " : str[0]);
+                hidDangerClassModel.setHidDangerNum(StringUtils.isEmpty(str[1]) ? "" : str[1]);
+                hidDangerClassModel.setProportion(StringUtils.isEmpty(str[2]) ? "" : str[2]);
                 hidDangerClassModel.setCreateDate(new Date());
                 hidDangerClassModel.setUpdateDate(new Date());
                 // 只导入不存在的企业，根据统一认证的企业编号判断库中是否已经存在，若已经存在更新。
@@ -48,6 +48,7 @@ public class HidDangerClassServiceImpl extends ServiceImpl<HidDangerClassDao,Hid
             entityList.clear();
 
         }
+        remove(new QueryWrapper<HidDangerClassModel>());
         this.saveBatch(entityList);
     }
 
@@ -56,14 +57,16 @@ public class HidDangerClassServiceImpl extends ServiceImpl<HidDangerClassDao,Hid
      * @param HidDangerClassModel
      * @return
      */
-    public boolean isExists(HidDangerClassModel HidDangerClassModel){
+    public boolean isExists(HidDangerClassModel hidDangerClassModel){
         QueryWrapper<HidDangerClassModel> wrapper = new QueryWrapper<HidDangerClassModel>();
-        wrapper.eq("hidDangerType",HidDangerClassModel.getHidDangerType());
-        wrapper.eq("hidDangerNum",HidDangerClassModel.getHidDangerNum());
-        wrapper.eq("proportion",HidDangerClassModel.getProportion());
+        wrapper.eq("hidDangerType",hidDangerClassModel.getHidDangerType());
+        wrapper.eq("hidDangerNum",hidDangerClassModel.getHidDangerNum());
+        wrapper.eq("proportion",hidDangerClassModel.getProportion());
         HidDangerClassModel res =  this.getOne(wrapper);
         if (res!=null){
-            this.update(wrapper);
+        	QueryWrapper<HidDangerClassModel> wheremapper = new QueryWrapper<HidDangerClassModel>();
+            wheremapper.eq("id",res.getId());
+            this.update(hidDangerClassModel,wheremapper);
             return true;
         }
         return false;

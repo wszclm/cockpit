@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cockpit.commons.exception.BaseException;
 import com.cockpit.dao.EnterpriseDao;
+import com.cockpit.model.CloudEnterpriseModel;
 import com.cockpit.model.EnterpriseModel;
 import com.cockpit.service.IEnterpriseService;
 import com.github.pagehelper.Page;
@@ -27,12 +28,12 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
         for (String[] str : list) {
             EnterpriseModel enterpriseModel = new EnterpriseModel();
             if (str.length == 6) {
-                enterpriseModel.setEnterPriseName(StringUtils.isEmpty(str[1]) ? " " : str[1]);
-                enterpriseModel.setContact(StringUtils.isEmpty(str[2]) ? " " : str[2]);
-                enterpriseModel.setContactNum(StringUtils.isEmpty(str[3]) ? " " : str[3]);
-                enterpriseModel.setPorduct(StringUtils.isEmpty(str[4]) ? " " : str[4]);
-                enterpriseModel.setTown(StringUtils.isEmpty(str[5]) ? " " : str[5]);
-                enterpriseModel.setDetailAddress(StringUtils.isEmpty(str[6]) ? " " : str[6]);
+                enterpriseModel.setEnterPriseName(StringUtils.isEmpty(str[0]) ? " " : str[0]);
+                enterpriseModel.setContact(StringUtils.isEmpty(str[1]) ? " " : str[1]);
+                enterpriseModel.setContactNum(StringUtils.isEmpty(str[2]) ? " " : str[2]);
+                enterpriseModel.setPorduct(StringUtils.isEmpty(str[3]) ? " " : str[3]);
+                enterpriseModel.setTown(StringUtils.isEmpty(str[4]) ? " " : str[4]);
+                enterpriseModel.setDetailAddress(StringUtils.isEmpty(str[5]) ? " " : str[5]);
                 enterpriseModel.setCreateDate(new Date());
                 enterpriseModel.setUpdateDate(new Date());
 
@@ -49,6 +50,7 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
             entityList.clear();
 
         }
+        remove(new QueryWrapper<EnterpriseModel>());
         this.saveBatch(entityList);
     }
 
@@ -63,7 +65,9 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
         wrapper.eq("enterPrise_name",enterpriseModel.getEnterPriseName());
         EnterpriseModel res =  this.getOne(wrapper);
         if (res!=null){
-            this.update(wrapper);
+        	 QueryWrapper<EnterpriseModel> wheremapper = new QueryWrapper<EnterpriseModel>();
+             wheremapper.eq("id",res.getId());
+             this.update(enterpriseModel,wheremapper);
             return true;
         }
         return false;
