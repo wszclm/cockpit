@@ -9,7 +9,6 @@ import com.cockpit.commons.exception.BaseException;
 import com.cockpit.commons.model.RestResult;
 import com.cockpit.commons.utils.ExcelUtil;
 import com.cockpit.model.CloudEnterpriseModel;
-import com.cockpit.model.EnterpriseModel;
 import com.cockpit.service.impl.CloudEnterpriseServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
@@ -123,7 +122,7 @@ public class CloudEnterpriseController {
 
     // 上云企业数据删除
     @ApiOperation(value = "上云企业数据删除", notes = "上云企业数据删除")
-    @RequestMapping(value = "/cloudenterprise/deleteByCode", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/cloudenterprise/deleteById", method = RequestMethod.DELETE)
     public RestResult deleteEnterpriseData( HttpServletRequest request, @RequestBody CloudEnterpriseController.CloudEnterpriseDataModeVo cloudEnterpriseDataModeVo) {
         RestResult result = new RestResult();
         List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();

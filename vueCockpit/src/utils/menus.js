@@ -32,7 +32,7 @@ export const initMenu = (router, store) => {
         "url": "/"
     },
     {
-        "component": "DataHidDangerClass",
+        "component": "DataHidDangerFix",
         "enabled": true,
         "iconCls": "fa fa-leanpub",
         "id": 3,
@@ -41,7 +41,7 @@ export const initMenu = (router, store) => {
         },
         "name": "隐患整改分析",
         "parentId": 1,
-        "path": "/dataImport/dataHidDangerChange",
+        "path": "/dataImport/dataHidDangerFix",
         "url": "/"
     },
     {
@@ -57,7 +57,7 @@ export const initMenu = (router, store) => {
         "path": "/dataImport/dataHidDangerClass",
         "url": "/"
     },{
-        "component": "DataHidDangerClass",
+        "component": "DataHidDangerWind",
         "enabled": true,
         "iconCls": "fa fa-windows",
         "id": 4,
@@ -66,7 +66,7 @@ export const initMenu = (router, store) => {
         },
         "name": "风险等级分析",
         "parentId": 1,
-        "path": "/dataImport/dataHidDangerClass",
+        "path": "/dataImport/dataHidDangerWind",
         "url": "/"
     },
         {

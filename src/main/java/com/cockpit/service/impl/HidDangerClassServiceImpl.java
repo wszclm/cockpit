@@ -59,8 +59,8 @@ public class HidDangerClassServiceImpl extends ServiceImpl<HidDangerClassDao,Hid
      */
     public boolean isExists(HidDangerClassModel hidDangerClassModel){
         QueryWrapper<HidDangerClassModel> wrapper = new QueryWrapper<HidDangerClassModel>();
-        wrapper.eq("hidDangerType",hidDangerClassModel.getHidDangerType());
-        wrapper.eq("hidDangerNum",hidDangerClassModel.getHidDangerNum());
+        wrapper.eq("hid_danger_type",hidDangerClassModel.getHidDangerType());
+        wrapper.eq("hid_danger_num",hidDangerClassModel.getHidDangerNum());
         wrapper.eq("proportion",hidDangerClassModel.getProportion());
         HidDangerClassModel res =  this.getOne(wrapper);
         if (res!=null){

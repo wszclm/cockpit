@@ -58,8 +58,8 @@ public class RiskLevelAnalyServiceImpl extends ServiceImpl<RiskLevelAnalyDao,Ris
      */
     public boolean isExists(RiskLevelAnalyModel riskLevelAnalyModel){
         QueryWrapper<RiskLevelAnalyModel> wrapper = new QueryWrapper<RiskLevelAnalyModel>();
-        wrapper.eq("enterPriseName",riskLevelAnalyModel.getEnterPriseName());
-        wrapper.eq("riskLevel",riskLevelAnalyModel.getRiskLevel());
+        wrapper.eq("ENTERPRISE_NAME",riskLevelAnalyModel.getEnterPriseName());
+        wrapper.eq("risk_level",riskLevelAnalyModel.getRiskLevel());
         RiskLevelAnalyModel res =  this.getOne(wrapper);
         if (res!=null){
         	QueryWrapper<RiskLevelAnalyModel> wheremapper = new QueryWrapper<RiskLevelAnalyModel>();

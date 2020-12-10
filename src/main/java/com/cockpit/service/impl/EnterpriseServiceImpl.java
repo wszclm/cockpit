@@ -1,18 +1,15 @@
 package com.cockpit.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cockpit.commons.exception.BaseException;
 import com.cockpit.dao.EnterpriseDao;
-import com.cockpit.model.CloudEnterpriseModel;
 import com.cockpit.model.EnterpriseModel;
 import com.cockpit.service.IEnterpriseService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -50,7 +47,6 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
             entityList.clear();
 
         }
-        remove(new QueryWrapper<EnterpriseModel>());
         this.saveBatch(entityList);
     }
 
@@ -79,12 +75,6 @@ public class EnterpriseServiceImpl extends ServiceImpl<EnterpriseDao, Enterprise
         int pageSize = 0;
         Map<String, Object> resultMap = new HashMap<> ();
         QueryWrapper<EnterpriseModel> wrapper = new QueryWrapper<EnterpriseModel>();
-        if (!StringUtils.isEmpty(enterpriseModeVo.getEnterPriseName())){
-            wrapper.eq("enterPrise_name",enterpriseModeVo.getEnterPriseName());
-        }
-        if (StringUtils.isNotEmpty(enterpriseModeVo.getCreateDate().toString())){
-            wrapper.between("create_date",enterpriseModeVo.getCreateDate(),enterpriseModeVo.getUpdateDate());
-        }
             Page page = PageHelper.startPage(pageNo, pageSize,true);
             List<EnterpriseModel> list =  enterpriseDao.selectList(wrapper);
             Map<String,Object> pager = new HashMap<>();

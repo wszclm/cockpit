@@ -8,6 +8,10 @@ import DataCoreMonitor from './views/dataImport/DataCoreMonitor.vue'
 import DataIntelligentTip from './views/dataImport/DataIntelligentTip.vue'
 import DataSafeHiddenTrouble from './views/dataImport/DataSafeHiddenTrouble'
 import DataSafetyCode from './views/dataImport/DataSafetyCode'
+import DataHidDangerFix from './views/dataImport/DataHidDangerFix'
+import DataHidDangerClass from './views/dataImport/DataHidDangerClass'
+import DataHidDangerWind from './views/dataImport/DataHidDangerWind'
+
 Vue.use(Router)
 
 export default new Router({
@@ -39,15 +43,21 @@ export default new Router({
                     hidden: true
                 },
                 {
-                    path: '/dataImport/dataEnterprise',
+                    path: '/dataImport/dataHidDangerFix',
                     name: '隐患整改分析',
-                    component:DataEnterprise,
+                    component:DataHidDangerFix,
                     hidden: true
                 },
                 {
-                    path: '/dataImport/dataEnterpriseLease',
+                    path: '/dataImport/dataHidDangerClass',
                     name: '隐患分类分析',
-                    component:DataEnterprise,
+                    component:DataHidDangerClass,
+                    hidden: true
+                },
+                {
+                    path: '/dataImport/dataHidDangerWind',
+                    name: '风险等级分析',
+                    component:DataHidDangerWind,
                     hidden: true
                 },
                 {

@@ -1,16 +1,16 @@
 <template>
-   <div>
+  <div>
         <div class='marketing' >
             <div class='marketing-content'>
                 <el-row :gutter='10'>
                     <el-col :span='24' align='right'>
-                        <el-button type='success' icon='el-icon-download'> <a style="color:#fff" href="../static/file/上云企业.xls" download="上云企业.xls">上云企业模板下载</a></el-button>
+                        <el-button type='success' icon='el-icon-download'> <a style="color:#fff" href="../static/file/数据分析-隐患整改分析.xls" download="数据分析-隐患整改分析xls">隐患整改分析模板下载</a></el-button>
                         <el-button type='primary' icon='el-icon-delete-solid' @click='batchRemove'>删除</el-button>
                           </el-col>
                           <el-col>
                            <el-upload
                             ref="upload"
-                            action='/cloudenterprise/batchImport' 
+                            action='/hidDangerChange/batchImport' 
                             :with-credentials='true' 
                             :on-progress='onUploadProgress'
                             :on-success='mtdUploadSuccess'
@@ -23,8 +23,9 @@
                     <el-col :span='24' >
                         <el-table ref="table" :data='tableData' :border=true :stripe=true v-loading='loading' @selection-change="changeFun" element-loading-text='拼命加载中'>
                             <el-table-column type="selection" prop='id' align='center' width='70' label='序号'></el-table-column>
-                            <el-table-column prop='town' align='center' label='所在乡镇' ></el-table-column>
-                            <el-table-column prop='num' align='center' label='数量'></el-table-column>
+                            <el-table-column prop='treatment' align='center' label='处理情况' ></el-table-column>
+                            <el-table-column prop='hidDangerNum' align='center' label='隐患数量'></el-table-column>
+                            <el-table-column prop='proportion' align='center' label='比例'></el-table-column>
                             <el-table-column prop='createDate' align='center' label='创建时间'></el-table-column>
                         </el-table>
                     </el-col>
@@ -42,36 +43,12 @@
         </div>
     </div>
 </template>
-<style scoped lang='less'>
-.firstTable{
-  width: 100%;
-  border-bottom: 1px solid #e6e6e6;
-  padding: 20px 0 50px 0;
-}
-.secondTable{
-  width: 100%;
-  padding: 30px 0 0 0;
-}
-.spanShow{
-  font: outline;
-  font-size: 17px;
-  color: #e6a23c;
-  font-weight: bold;
-  padding: 0 0 10px 0;
-}
-.dataShow{
-  font-size: 14px;
-  color: #c7000c;
-}
-.zulin{
-  padding: 0 0 10px 0;
-}
-</style>
+
 <script>
-  import {mymessage} from '@/utils/mymessage';
+   import {mymessage} from '@/utils/mymessage';
 import { Message } from 'element-ui';
 export default {
-    name: 'DataCloudEnterpirse',
+    name: 'DataHidDangerFix',
     data() {
         return {
             loaded: false,
@@ -128,7 +105,7 @@ export default {
                      this.$alert("请至少选择一条记录！"); 
                      return; 
                 }
-                this.deleteRequest('/cloudenterprise/deleteById',{ids:ids}).then(resp => {
+                this.deleteRequest('/hidDangerChange/deleteById',{ids:ids}).then(resp => {
                      if(resp.meta.statusCd == -1 || resp.meta.statusCd == 400){
                         // mymessage.error({message: resp.meta.message? resp.meta.message : '添加失败!'});          
                             this.$alert("删除失败："+resp.meta.message,'Error');  
@@ -160,7 +137,7 @@ export default {
                 pageNo: this.cur_page,
                 pageSize: this.pageSize,
             };
-            this.getRequest('/cloudenterprise/queryAll').then(resp => {
+            this.getRequest('/hidDangerChange/queryAll').then(resp => {
                 this.loading = false;
                 if (resp) {
                     console.log(resp.info);
@@ -186,3 +163,7 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+</style>

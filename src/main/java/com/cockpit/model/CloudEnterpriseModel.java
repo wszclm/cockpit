@@ -13,7 +13,7 @@ import java.util.Date;
 /**
  * 企业数据模型
  */
-@TableName("cloudEnterprise")
+@TableName("cloud_enterprise")
 public class CloudEnterpriseModel {
 
     @TableId(type = IdType.AUTO)

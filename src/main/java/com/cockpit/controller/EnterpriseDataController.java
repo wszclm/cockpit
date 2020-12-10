@@ -7,7 +7,6 @@ import com.cockpit.commons.model.RestResult;
 import com.cockpit.commons.utils.ExcelUtil;
 import com.cockpit.model.EnterpriseModel;
 import com.cockpit.service.impl.EnterpriseServiceImpl;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -118,7 +117,7 @@ public class EnterpriseDataController {
 
     // 企业数据删除
     @ApiOperation(value = "企业数据删除", notes = "企业数据删除")
-    @RequestMapping(value = "/enterprise/deleteByCode", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/enterprise/deleteById", method = RequestMethod.DELETE)
     public RestResult deleteEnterpriseData( HttpServletRequest request, @RequestBody EnterpriseDataModeVo enterpriseModeVo) {
         RestResult result = new RestResult();
         List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();

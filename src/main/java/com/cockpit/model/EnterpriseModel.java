@@ -49,7 +49,7 @@ public class EnterpriseModel {
     /**
      * 所在乡镇
      */
-    @TableField(value = "town")
+    @TableField(value = "detail_tons")
     private String town;
 
 
