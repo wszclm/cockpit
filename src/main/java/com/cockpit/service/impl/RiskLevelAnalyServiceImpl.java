@@ -47,7 +47,6 @@ public class RiskLevelAnalyServiceImpl extends ServiceImpl<RiskLevelAnalyDao,Ris
             entityList.clear();
 
         }
-        remove(new QueryWrapper<RiskLevelAnalyModel>());
         this.saveBatch(entityList);
     }
 

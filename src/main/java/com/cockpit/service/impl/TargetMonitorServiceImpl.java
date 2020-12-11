@@ -44,7 +44,6 @@ public class TargetMonitorServiceImpl extends ServiceImpl<TargetMonitorDao,Targe
             entityList.clear();
 
         }
-        this.remove(new QueryWrapper<TargetMonitorModel>());
         this.saveBatch(entityList);
     }
 

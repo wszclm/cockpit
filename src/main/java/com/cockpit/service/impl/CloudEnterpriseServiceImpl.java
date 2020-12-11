@@ -45,7 +45,6 @@ public class CloudEnterpriseServiceImpl  extends ServiceImpl<CloudEnterpriseDao,
             entityList.clear();
 
         }
-        remove(new QueryWrapper<CloudEnterpriseModel>());
         this.saveBatch(entityList);
     }
 

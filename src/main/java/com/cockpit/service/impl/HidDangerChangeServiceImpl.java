@@ -49,7 +49,6 @@ public class HidDangerChangeServiceImpl extends ServiceImpl<HidDangerChangeDao,H
             entityList.clear();
 
         }
-        remove(new QueryWrapper<HidDangerChangeModel>());
         this.saveBatch(entityList);
     }
 

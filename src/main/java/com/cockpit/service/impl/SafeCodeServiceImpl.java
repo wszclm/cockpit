@@ -45,7 +45,6 @@ public class SafeCodeServiceImpl extends ServiceImpl<SafeCodeDao,SafeCodeModel> 
             entityList.clear();
 
         }
-        remove(new QueryWrapper<SafeCodeModel>());
         this.saveBatch(entityList);
     }
 
