@@ -78,8 +78,8 @@ public class EnterpriseDataController {
             EnterpriseModel enterpriseModel = new EnterpriseModel();
             enterpriseModel.setCreateDate(enterpriseModeVo.getCreateDate());
             Map<String,Object> results =  enterpriseService.queryEnterpriseData(enterpriseModel);
-          result.setInfo(results);
-          result.setMeta(HttpStatus.OK.value(),"");
+            result.setInfo(results);
+            result.setMeta(HttpStatus.OK.value(),"");
         } catch (BaseException e) {
             logger.debug("企业数据查询异常：{}", e.getMessage());
             result.setMeta(SrConstantMDA.INTF_RET_CODE_EXCEPTION,e.getMessage());

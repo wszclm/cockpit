@@ -10,7 +10,7 @@
                           <el-col>
                            <el-upload
                             ref="upload"
-                            action='/enterprise/batchImport' 
+                            action='/apis/enterprise/batchImport' 
                             :with-credentials='true' 
                             :on-progress='onUploadProgress'
                             :on-success='mtdUploadSuccess'

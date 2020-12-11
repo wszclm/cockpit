@@ -31,8 +31,8 @@ axios.interceptors.response.use(success => {
     return;
 })
 
-/*let base = 'http://localhost:8090/mujun-mng-service';*/
-let base = '';
+let base = 'http://localhost:8080/cockpit';
+/*let base = '';*/
 export const postKeyValueRequest = (url, params) => {
     return axios({
         method: 'post',

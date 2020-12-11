@@ -10,7 +10,7 @@
                           <el-col>
                            <el-upload
                             ref="upload"
-                            action='/hidDangerClass/batchImport' 
+                            action='/apis/hidDangerClass/batchImport' 
                             :with-credentials='true' 
                             :on-progress='onUploadProgress'
                             :on-success='mtdUploadSuccess'

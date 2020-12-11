@@ -10,7 +10,7 @@
                           <el-col>
                            <el-upload
                             ref="upload"
-                            action='/safeCode/batchImport' 
+                            action='/apis/safeCode/batchImport' 
                             :with-credentials='true' 
                             :on-progress='onUploadProgress'
                             :on-success='mtdUploadSuccess'
