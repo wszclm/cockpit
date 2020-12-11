@@ -117,7 +117,7 @@ public class TargetMonitorController {
             HashMap<Object, Object> map = new HashMap<>();
             map.put("startDate",targetMonitorVo.getStartDate());
             map.put("endDate",targetMonitorVo.getEndDate());
-            Map<String,Object> results =  targetMonitorService.querySafeCode(map);
+            Map<String,Object> results =  targetMonitorService.queryMonitorData(map);
             result.setInfo(results);
             result.setMeta(HttpStatus.OK.value(),"");
         } catch (BaseException e) {

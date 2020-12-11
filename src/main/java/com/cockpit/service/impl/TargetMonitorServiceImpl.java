@@ -48,7 +48,7 @@ public class TargetMonitorServiceImpl extends ServiceImpl<TargetMonitorDao,Targe
         this.saveBatch(entityList);
     }
 
-    public Map<String, Object> querySafeCode(Map<Object,Object> param) throws BaseException {
+    public Map<String, Object> queryMonitorData(Map<Object,Object> param) throws BaseException {
         int pageNo = 15;
         int pageSize = 0;
         Map<String, Object> resultMap = new HashMap<>();
