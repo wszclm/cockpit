@@ -11,6 +11,7 @@ import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -63,12 +64,16 @@ public class HiddenDangerServiceImpl extends ServiceImpl<HiddenDangerDao,HiddenD
         return false;
     }
 
+    @Transactional
     public Map<String, Object> queryHiddenDanger(Map<Object,Object> param) throws BaseException {
         int pageNo = 15;
         int pageSize = 0;
         Map<String, Object> resultMap = new HashMap<>();
         QueryWrapper<HiddenDangerModel> wrapper = new QueryWrapper<HiddenDangerModel>();
         Page page = PageHelper.startPage(pageNo, pageSize,true);
+        if (param.get("ename")!=null) {
+            wrapper.eq("ename", param.get("ename").toString());
+        }
         List<HiddenDangerModel> list =  hiddenDangerDao.selectList(wrapper);
         Map<String,Object> pager = new HashMap<>();
         resultMap.put("data", list);

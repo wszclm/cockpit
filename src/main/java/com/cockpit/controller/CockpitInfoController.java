@@ -13,9 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -57,8 +55,8 @@ public class CockpitInfoController {
     private TargetMonitorServiceImpl targetMonitorService;
 
     @ApiOperation(value = "驾驶舱数据展示", notes = "驾驶舱数据展示")
-    @RequestMapping(value = "/cockpit/getInfo", method = RequestMethod.POST)
-    public RestResult queryCockpitDataInfo(HttpServletRequest request) {
+    @RequestMapping(value = "/cockpit/getInfo", method = RequestMethod.GET)
+    public RestResult queryCockpitDataInfo(HttpServletRequest request,@RequestParam(value = "ename",required = false) String ename ) {
         RestResult result = new RestResult();
         List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
         HashMap<String, Object> resultMap = new HashMap<>();
@@ -67,13 +65,15 @@ public class CockpitInfoController {
             resultMap.put("enterpriseData",enterpriseData);
             Map<String,Object> cloudenterpriseData =  cloudEnterpriseService.queryEnterpriseData(new CloudEnterpriseModel());
             resultMap.put("cloudpriseData",cloudenterpriseData);
-            Map<String,Object> intlligenttipsMap = intelligentTipsService.queryIntelligentTips(new HashMap<>());
+            HashMap<Object, Object> intellMap = new HashMap<>();intellMap.put("ename",ename);
+            Map<String,Object> intlligenttipsMap = intelligentTipsService.queryIntelligentTips(intellMap);
             resultMap.put("intelligenttips",intlligenttipsMap);
             Map<String,Object> safeCode = safeCodeService.querySafeCode(new HashMap<>());
             resultMap.put("safeCode",safeCode);
             Map<String,Object> targetmonitor = targetMonitorService.queryMonitorData(new HashMap<>());
             resultMap.put("targetmonitor",targetmonitor);
-            Map<String,Object> hiddenDanger = hiddenDangerService.queryHiddenDanger(new HashMap<>());
+            HashMap<Object, Object> hiddendangerMap = new HashMap<>();hiddendangerMap.put("ename",ename);
+            Map<String,Object> hiddenDanger = hiddenDangerService.queryHiddenDanger(hiddendangerMap);
             resultMap.put("hiddenDanger",hiddenDanger);
             result.setInfo(resultMap);
             result.setMeta(HttpStatus.OK.value(),"");

@@ -12,6 +12,7 @@ import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -64,6 +65,7 @@ public class IntelligentTipsServiceImpl extends ServiceImpl<IntelligentTipsDao,I
         return false;
     }
 
+    @Transactional
     public Map<String, Object> queryIntelligentTips(Map<Object,Object> param) throws BaseException {
         int pageNo = 15;
         int pageSize = 0;
@@ -71,7 +73,9 @@ public class IntelligentTipsServiceImpl extends ServiceImpl<IntelligentTipsDao,I
         QueryWrapper<IntelligentTipsModel> wrapper = new QueryWrapper<IntelligentTipsModel>();
         Page page = PageHelper.startPage(pageNo, pageSize,true);
         // 条件查询
-
+        if (param.get("ename")!=null) {
+            wrapper.eq("ename", param.get("ename").toString());
+        }
         List<IntelligentTipsModel> list =  intelligentTipsDao.selectList(wrapper);
         Map<String,Object> pager = new HashMap<>();
         resultMap.put("data", list);
