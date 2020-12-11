@@ -25,7 +25,7 @@ CREATE TABLE `cloud_enterprise` (
   `CREATE_DATE` datetime DEFAULT NULL COMMENT '记录首次创建的时间。',
   `UPDATE_DATE` datetime DEFAULT NULL COMMENT '记录每次修改的时间。',
   `REMARK` varchar(2000) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '记录备注。',
-  PRIMARY KEY (`ID`),
+  PRIMARY KEY (`ID`)
 )ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `user`;
