@@ -7,7 +7,6 @@ import com.cockpit.model.UserModel;
 import com.cockpit.service.impl.UserServiceImpl;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,24 +28,21 @@ public class LoginController {
     private UserServiceImpl userService;
 
     @PostMapping ("/doLogin")
-    public RestResult login( ) {
+    public RestResult login(@RequestBody UserVo userVo ) {
         RestResult restResult = new RestResult();
 //        String verify_code = (String) request.getSession().getAttribute("verify_code");
 //
 //        if (!verify_code.equals(userVo.getCode())){
 //            restResult.setMeta(HttpStatus.OK.value(),"验证码错误");
 //        }
-//        UserModel userModel = new UserModel();
-//        userModel.setUsername(userVo.getUsername());
-//        userModel.setPassword(userVo.getPassword());
-//        boolean flag =   userService.doLogin(userModel);
-//        if (!flag){
-//            restResult.setMeta(HttpStatus.OK.value(),"用户名密码错误，登录失败！");
-//        }
+
         UserModel user = new UserModel();
-        user.setUsername("张三");
-        user.setId(1);
-        user.setTelephone("18568887789");
+        user.setUsername(userVo.getUsername());
+        user.setPassword(userVo.getPassword());
+        boolean flag =  userService.doLogin(user);
+        if (!flag){
+            restResult.setMeta(HttpStatus.OK.value(),"用户名密码错误，登录失败！");
+        }
         restResult.setCode(HttpStatus.OK.value());
         restResult.setMessage("登录成功！");
         restResult.setInfo(user);
