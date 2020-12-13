@@ -85,4 +85,33 @@ public class CockpitInfoController {
         return result;
     }
 
+    @ApiOperation(value = "驾驶舱数据分析展示", notes = "驾驶舱数据分析展示")
+    @RequestMapping(value = "/cockpit/getAnalysisInfo", method = RequestMethod.GET)
+    public RestResult queryCockpitAnalysisInfo(HttpServletRequest request) {
+        RestResult result = new RestResult();
+        List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            // 隐患整改分析
+            Map<String,Object> hidderDangerData =  hidDangerChangeService.queryHidDangerChange(new HashMap<>());
+            resultMap.put("hidderDangerChange",hidderDangerData);
+            // 隐患分类分析
+            Map<String,Object> hidderDangerClass =  hidDangerClassservice.queryHidDangerClass(new HashMap<>());
+            resultMap.put("hidderDangerClass",hidderDangerClass);
+            // 风险等级分析
+            Map<String,Object> riskLevelAnaly =  riskLevelAnalyService.queryRiskLevelAnaly(new HashMap<>());
+            resultMap.put("riskLevelAnaly",riskLevelAnaly);
+            result.setInfo(resultMap);
+            result.setMeta(HttpStatus.OK.value(),"");
+        } catch (BaseException e) {
+            logger.debug("数据分析查询异常：{}", e.getMessage());
+            result.setMeta(SrConstantMDA.INTF_RET_CODE_EXCEPTION,e.getMessage());
+            result.setInfo(resultList);
+        }
+        return result;
+    }
+
+
+
+
 }
