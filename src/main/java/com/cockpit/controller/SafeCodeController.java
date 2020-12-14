@@ -25,7 +25,7 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.*;
 
-@Api(value = "安全生产码数据导入", tags = {"HiddenDangerController"},description ="安全生产数据导入")
+@Api(value = "安全生产码数据导入", tags = {"SafeCodeController"},description ="安全生产数据导入")
 @RestController
 public class SafeCodeController {
 
