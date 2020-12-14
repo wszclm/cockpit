@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
-@TableName("enterprise")
+@TableName("user")
 public class UserModel {
 
     @TableId(type = IdType.AUTO)

@@ -5,8 +5,10 @@ import com.cockpit.commons.config.VerificationCode;
 import com.cockpit.commons.model.RestResult;
 import com.cockpit.model.UserModel;
 import com.cockpit.service.impl.UserServiceImpl;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,11 +24,12 @@ import java.io.IOException;
 import java.io.Serializable;
 
 @RestController
+@Api(value = "用户登录", tags = {"LoginController"},description ="用户登录")
 public class LoginController {
 
     @Autowired
     private UserServiceImpl userService;
-
+    @ApiOperation(value = "用户登录接口", notes = "用户登录接口")
     @PostMapping ("/doLogin")
     public RestResult login(@RequestBody UserVo userVo ) {
         RestResult restResult = new RestResult();
@@ -39,19 +42,21 @@ public class LoginController {
         UserModel user = new UserModel();
         user.setUsername(userVo.getUsername());
         user.setPassword(userVo.getPassword());
-        boolean flag =  userService.doLogin(user);
-        if (!flag){
-            restResult.setMeta(HttpStatus.OK.value(),"用户名密码错误，登录失败！");
+        UserModel resultUser =  userService.doLogin(user);
+        if (resultUser==null){
+            //登录失败返回
+            restResult.setMeta(HttpStatus.BAD_REQUEST.value(),"用户名密码错误，登录失败！");
         }
+        resultUser.setPassword(null);
         restResult.setCode(HttpStatus.OK.value());
         restResult.setMessage("登录成功！");
-        restResult.setInfo(user);
+        restResult.setInfo(resultUser);
         return  restResult;
 
     }
 
     @ApiModel
-    class UserVo implements Serializable{
+   static class UserVo implements Serializable{
         private static final long serialVersionUID = 4790924204646750015L;
         @ApiModelProperty(value = "用户名")
         private String username;

@@ -27,6 +27,14 @@ public class RiskLevelAnalyModel {
 	@TableField(value = "risk_level")
 	private String riskLevel;
 
+
+	/**
+	 * 比例
+	 */
+	@TableField(value = "proportion")
+	private String proportion;
+
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") // 页面写入数据库时格式化
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") // 数据库导出页面时json格式化
 	@TableField(value = "create_date")
@@ -37,10 +45,20 @@ public class RiskLevelAnalyModel {
 	@TableField(value = "update_date")
 	private Date updateDate;
 
+	public String getProportion() {
+		return proportion;
+	}
+
+	public void setProportion(String proportion) {
+		this.proportion = proportion;
+	}
+
 	/**
 	 * 备注信息
 	 */
 	@TableField(value = "remark")
+
+
 	private String remark;
 
 	public String getId() {

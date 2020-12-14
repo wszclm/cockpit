@@ -109,6 +109,7 @@ CREATE TABLE `risk_level_analy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ENTERPRISE_NAME` varchar(300) DEFAULT NULL COMMENT '公司名称',
   `risk_level` varchar(200) DEFAULT NULL COMMENT '风险等级',
+  `proportion` decimal(10,0) DEFAULT NULL COMMENT '比例',
   `CREATE_DATE` datetime DEFAULT NULL,
   `UPDATE_DATE` datetime DEFAULT NULL,
   `REMARK` varchar(2000) DEFAULT NULL,
