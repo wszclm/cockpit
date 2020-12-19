@@ -5,14 +5,16 @@
 2. localStorage
 3. vuex**
 ```
-####  前端工程安装依赖
+#### 前端工程安装依赖
 -- 安装失败，需要更改镜像为淘宝镜像
-num install
+npm install  若npm install 安装包报已存在删除node_modules包，重新执行npn install
 
-####  前端工程运行
+####  后端mysql表执行sql 目录的创建表脚本，initTable
+
+#### 前端工程运行
 npm run serve
 -- 转发配置 vue.config.js  这个里面配置请求后端地址信息。
 
-主页访问路径：http://localhost:8090/#/home
+主页访问路径：http://localhost:8060/#/home
 
 ```
