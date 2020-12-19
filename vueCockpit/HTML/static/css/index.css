@@ -1,0 +1,309 @@
+.main_left,.main_right{
+  width: 25%;
+  height: 100%;
+  float: left;
+}
+.main_center{
+  width: 50%;
+  height: 100%;
+  float: left;
+  position: relative;
+}
+.contern_box{
+  width: 100%;
+  height: 5.26rem;
+  border-radius: .1rem;
+  background-image: url(./../images/ct1.png),url(./../images/ct2.png);
+  background-repeat: no-repeat,no-repeat;
+  background-position: center top,center top .54rem;
+  background-size: 7.22rem 2.16rem,7.1rem .38rem;
+  border: .01rem solid rgb(3,176,234);
+  box-shadow: 0 0 1rem .5rem rgba(3, 176, 234, .5) inset;
+  margin-bottom: .4rem;
+}
+.head_yd{
+  width: 100%;
+  height: 2rem;
+}
+.content_title{
+  width: 100%;
+  height: .9rem;
+  line-height: .9rem;
+  text-align: center;
+  font-size: .5rem;
+  color: #fff;
+}
+.content_title .orange{
+  color: rgb(252,117,88);
+}
+.content_msg{
+  width: 100%;
+  height: calc(100% - .9rem);
+  padding-top: .4rem;
+}
+.syqy{
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.syqy li{
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: .2rem;
+}
+.syqy li .s_name{
+  width: 1.5rem;
+  line-height: .4rem;
+  color: #fff;
+  float: left;
+  font-size: .32rem;
+}
+.syqy li .s_line{
+  width: calc(100% - 2.9rem);
+  height: .4rem;
+  background-color: rgba(255,255,255,.1);
+  float: left;
+  margin-left: .2rem;
+  margin-right: .2rem;
+  border-radius: .04rem;
+  overflow: hidden;
+}
+.syqy li .s_line span{
+  display: block;
+  width: 50%;
+  height: 100%;
+  background-color:rgb(174,195,250);
+}
+.syqy li .s_num{
+  width: 1rem;
+  color: rgb(252,117,88);
+  line-height: .4rem;
+  float: left;
+  font-size: .32rem;
+}
+.jcMainDatas{
+  width: 17.4rem;
+  height: 1.5rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  z-index: 2000;
+}
+.jcMainDatas li{
+  width: 3rem;
+  height: 1.5rem;
+  float: left;
+  background-size: 100%;
+  padding-right: 0;
+  cursor: pointer;
+  border-radius: .04rem;
+  box-shadow: 0 0 .1rem .04rem rgba(255,255,255,.5);
+  background-color: rgba(1,198,215,.2);
+  display: inline-block;
+  margin-right: .4rem;
+}
+.jcMainDatas li:last-child{
+  margin-right: 0;
+}
+.jmdBox{
+  width: 100%;
+  height: 100%;
+  border: solid 0.03rem transparent;
+  padding-left: .15rem;
+  line-height: .45rem;
+  padding-top: .2rem;
+  text-align: left;
+}
+.jcMainDatas li.hot .jmdBox{
+  background-image: linear-gradient(0deg, 
+  rgba(1,198,215,.6) 0%, 
+  rgba(1,198,215,0) 100%);
+border: solid 0.03rem #00f4fb;
+}
+.jmdBox .n1 .lcdef{
+  color: #00f4fb;
+  font-size: .5rem;
+  vertical-align: top;
+  margin-right: .1rem
+}
+.jmdBox .n1 .dw{
+  color: #fff;
+}
+.jmdBox .n2{
+  font-size: 0.4rem;
+  color: #ffffff;
+  /* font-weight: bold; */
+  margin-bottom: .15rem;
+}
+.jmdBox .n1 span{
+  vertical-align: top
+}
+.aqscm{
+  padding: .4rem 
+}
+.aqscm li{
+  width: 50%;
+  float: left;
+  margin-bottom: .3rem;
+}
+.aqscm li p{
+  display: inline-block;
+  vertical-align: top;
+  padding-top: .15rem;
+  margin-left: .2rem;
+  text-align: center;
+  font-size: .4rem;
+  color: #fff;
+  font-weight: bold;
+}
+.aqscm li img{
+  width: 1.4rem;
+  height: 1.4rem;
+  vertical-align: top;
+  margin-left: .2rem;
+}
+.center_check{
+  width: 90%;
+  height: 50%;
+  margin: 0 auto;
+  margin-top: 1.6rem;
+  position: relative;
+}
+.center_check>div.active{
+  z-index: 1;
+}
+.map_box,.spjk{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.spjk{
+  background-color: black;
+}
+.spjk>div{
+  width: 50%;
+  height: 50%;
+  float: left;
+  border: 1px solid red;
+}
+.center_btns{
+  width: 3rem;
+  height: .4rem;
+  border: 1px solid steelblue;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: -.5rem;
+}
+.center_btns li{
+  width: 1.5rem;
+  text-align: center;
+  line-height: .38rem;
+  color:#fff;
+  cursor: pointer;
+}
+.center_btns li.active{
+  background-color:  rgba(255,255,255,.8);
+  color: steelblue;
+}
+.center_bottom{
+  width: 90%;
+  height: calc(50% - 2.7rem);
+  margin: 0 auto;
+  margin-top: .7rem;
+  border-radius: .1rem;
+  border: .01rem solid rgb(3,176,234);
+  box-shadow: 0 0 .5rem .1rem rgba(3, 176, 234, .5) inset;
+}
+.cb_top{
+  width: 100%;
+  height: .8rem;
+  line-height: .8rem;
+  padding: 0 .2rem;
+  font-size: .36rem;
+  color: #fff;
+  position: relative;
+}
+.cb_input{
+  width: 6rem;
+  height: .6rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: .1rem;
+  box-shadow: 0 0 .05rem .01rem inset rgb(79, 139, 252);
+  border-radius: .05rem;
+  overflow: hidden;
+}
+.cb_input input{
+  width: calc(100% - 1.3rem);
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  vertical-align: top;
+  color: #fff;
+  padding-left: .2rem;
+}
+.cb_input button{
+  background-color: cornflowerblue;
+  color: #fff;
+  width: 1.2rem;
+  vertical-align: top;
+  border: none;
+  float: right;
+  height: .6rem;
+  cursor: pointer;
+}
+.cb_bottom{
+  width: 100%;
+  height: calc(100% - .8rem);
+  padding: .1rem .2rem;
+  font-size: .32rem;
+  color: #fff;
+  border-top: 1px solid rgb(79, 139, 252);
+}
+.cb_table{
+  width: calc(50% - .1rem);
+  float: left;
+  height: 100%;
+  overflow-y: auto;
+}
+.cb_table:first-child{
+  margin-right: .2rem;
+}
+.cb_tr{
+  line-height: .6rem;
+  /* background-color: rgba(0, 0, 0, .3); */
+  overflow: hidden;
+}
+.cb_table .cb_tr:nth-child(2n+1){
+  background-color: rgba(255,255,255,.1);
+}
+.cb_td{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  float: left;
+  padding-left: .1rem;
+}
+.cb_tr .cb_td:nth-child(1){
+  width: 60%;
+}
+.cb_tr .cb_td:nth-child(2){
+  width: 40%;
+}

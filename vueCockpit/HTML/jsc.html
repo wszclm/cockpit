@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>羿顿安全数字驾驶舱</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./static/js/libs/fontSize.js"></script>
+
+  <link rel="stylesheet" href="./static/layui/css/layui.css">
+  <link rel="stylesheet" href="./static/css/base.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link href="static/lib/Cesium/Widgets/widgets.css" rel="stylesheet" />
+  <link href="static/lib/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+
+  <script src="./static/js/libs/jquery.min.js"></script>
+
+  <script src="./static/layui/layui.js"></script>
+  <script src="./static/js/libs/countUp.js"></script>
+  <script src="./static/js/libs/countUp-jquery.js"></script>
+  <script src="./static/js/libs/echarts.min.js"></script>
+
+  <script src="https://cdn.bootcss.com/three.js/102/three.min.js"></script>
+
+  <style>
+    .maptalks-tooltip {
+      display: block;
+      background: rgba(0, 0, 0, .6);
+      border: .01rem solid #000;
+      padding: 0 .04rem;
+      height: auto;
+      line-height: .40rem;
+      font-size: .24rem;
+      white-space: nowrap;
+      padding: .2rem;
+      color: #fff;
+      border-radius: .02rem;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="all">
+    <div class="head_yd">
+      <!-- 大标题 -->
+      <div class="middleTitle">
+        <div class="middleTitlebg">羿顿安全数字驾驶舱</div>
+        <div class="lightLine1"></div>
+        <div class="lightLine2"></div>
+      </div>
+    </div>
+    <!-- 主体 -->
+    <div class="main">
+      <div class="main_left">
+        <div class="contern_box">
+          <div class="content_title">上云企业 <span class="orange">231家</span></div>
+          <div class="content_msg" style="padding: .4rem .4rem">
+            <ul class="syqy" id="syqy">
+              <li>
+                <div class="s_name">旧县街道</div>
+                <div class="s_line"><span></span></div>
+                <div class="s_num">12家</div>
+              </li>
+              <li>
+                <div class="s_name">旧县街道</div>
+                <div class="s_line"><span></span></div>
+                <div class="s_num">12家</div>
+              </li>
+              <li>
+                <div class="s_name">旧县街道</div>
+                <div class="s_line"><span></span></div>
+                <div class="s_num">12家</div>
+              </li>
+              <li>
+                <div class="s_name">旧县街道</div>
+                <div class="s_line"><span></span></div>
+                <div class="s_num">12家</div>
+              </li>
+              <li>
+                <div class="s_name">旧县街道</div>
+                <div class="s_line"><span></span></div>
+                <div class="s_num">12家</div>
+              </li>
+              <li>
+                <div class="s_name">旧县街道</div>
+                <div class="s_line"><span></span></div>
+                <div class="s_num">12家</div>
+              </li>
+              <li>
+                <div class="s_name">旧县街道</div>
+                <div class="s_line"><span></span></div>
+                <div class="s_num">12家</div>
+              </li>
+              <li>
+                <div class="s_name">旧县街道</div>
+                <div class="s_line"><span></span></div>
+                <div class="s_num">12家</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="contern_box" style="height: 13rem;">
+          <div class="content_title">数据分析 <span class="orange">231家</span></div>
+          <div class="content_msg">
+            <div id="charts1" style="width: 100%;height: 33%;"></div>
+            <div id="charts2" style="width: 100%;height: 33%;"></div>
+            <div id="charts3" style="width: 100%;height: 33%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="main_center">
+        <ul class="jcMainDatas">
+          <li>
+            <div class="jmdBox" title="企业总数">
+              <p class="n2">企业总数</p>
+              <p class="n1"><span class="lcdef" id="qyzs">586328</span><span class="dw">个</span></p>
+            </div>
+          </li>
+          <li>
+            <div class="jmdBox" title="已巡检">
+              <p class="n2">已巡检</p>
+              <p class="n1"><span class="lcdef" id="yxj">586328</span><span class="dw">个</span></p>
+            </div>
+          </li>
+          <li>
+            <div class="jmdBox" title="未巡检">
+              <p class="n2">未巡检</p>
+              <p class="n1"><span class="lcdef" id="wxj">586328</span><span class="dw">个</span></p>
+            </div>
+          </li>
+        </ul>
+        <div class="center_check">
+          <div class="map_box active">
+            <div id="map"></div>
+          </div>
+          <div class="spjk">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <ul class="center_btns">
+            <li class="active">桐庐地图</li>
+            <li>视频监控</li>
+          </ul>
+        </div>
+        
+        <div class="center_bottom">
+          <div class="cb_top">
+            <span>智能预警</span>
+            <span style="float: right;">安全隐患</span>
+            <div class="cb_input">
+              <input type="text">
+              <button>搜索</button>
+            </div>
+          </div>
+          <div class="cb_bottom">
+            <!-- 智能预警 -->
+            <div class="cb_table" id="znyj">
+              <div class="cb_tr">
+                <div class="cb_td">桐庐XXXXXX有限公司</div>
+                <div class="cb_td">未展开安全培训</div>
+              </div>
+              <div class="cb_tr">
+                <div class="cb_td">桐庐XXXXXX有限公司</div>
+                <div class="cb_td">未展开安全培训</div>
+              </div>
+              <div class="cb_tr">
+                <div class="cb_td">桐庐XXXXXX有限公司</div>
+                <div class="cb_td">未展开安全培训</div>
+              </div>
+              <div class="cb_tr">
+                <div class="cb_td">桐庐XXXXXX有限公司</div>
+                <div class="cb_td">未展开安全培训</div>
+              </div>
+              <div class="cb_tr">
+                <div class="cb_td">桐庐XXXXXX有限公司</div>
+                <div class="cb_td">未展开安全培训</div>
+              </div>
+              <div class="cb_tr">
+                <div class="cb_td">桐庐XXXXXX有限公司</div>
+                <div class="cb_td">未展开安全培训</div>
+              </div>
+              <div class="cb_tr">
+                <div class="cb_td">桐庐XXXXXX有限公司</div>
+                <div class="cb_td">未展开安全培训</div>
+              </div>
+            </div>
+            <!-- 安全隐患 -->
+            <div class="cb_table" id="aqyh">
+              <div class="cb_tr">
+                <div class="cb_td">桐庐XXXXXX有限公司</div>
+                <div class="cb_td">未展开安全培训</div>
+              </div>
+              <div class="cb_tr">
+                <div class="cb_td">桐庐XXXXXX有限公司</div>
+                <div class="cb_td">未展开安全培训</div>
+              </div>
+              <div class="cb_tr">
+                <div class="cb_td">桐庐XXXXXX有限公司</div>
+                <div class="cb_td">未展开安全培训</div>
+              </div>
+              <div class="cb_tr">
+                <div class="cb_td">桐庐XXXXXX有限公司</div>
+                <div class="cb_td">未展开安全培训</div>
+              </div>
+              <div class="cb_tr">
+                <div class="cb_td">桐庐XXXXXX有限公司</div>
+                <div class="cb_td">未展开安全培训</div>
+              </div>
+              <div class="cb_tr">
+                <div class="cb_td">桐庐XXXXXX有限公司</div>
+                <div class="cb_td">未展开安全培训</div>
+              </div>
+              <div class="cb_tr">
+                <div class="cb_td">桐庐XXXXXX有限公司</div>
+                <div class="cb_td">未展开安全培训</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main_right">
+        <div class="contern_box">
+          <div class="content_title">安全生产码 </div>
+          <div class="contetn_msg">
+            <ul class="aqscm">
+              <li>
+                <img src="./static/images/ewm1.png" alt="">
+                <p>
+                  <span>红码</span><br>
+                  <span id="hongma">321</span>家
+                </p>
+              </li>
+              <li>
+                <img src="./static/images/ewm2.png" alt="">
+                <p>
+                  <span>橙码</span><br>
+                  <span id="chengma">321</span>家
+                </p>
+              </li>
+              <li>
+                <img src="./static/images/ewm3.png" alt="">
+                <p>
+                  <span>黄码</span><br>
+                  <span id="huangma">321</span>家
+                </p>
+              </li>
+              <li>
+                <img src="./static/images/ewm4.png" alt="">
+                <p>
+                  <span>绿码</span><br>
+                  <span id="lvma">321</span>家
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="contern_box" style="height: 13rem;">
+          <div class="content_title">危化品仓库监测</div>
+          <div class="content_msg">
+            <div id="charts4" style="width: 100%;height: 33%;"></div>
+            <div id="charts5" style="width: 100%;height: 33%;"></div>
+            <div id="charts6" style="width: 100%;height: 33%;"></div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <!-- Cesium -->
+  <script src="static/lib/Cesium/Cesium.js"></script>
+
+  <!-- ztree -->
+  <script src="static/lib/zTree/js/jquery-1.4.4.min.js"></script>
+  <script src="static/lib/zTree/js/jquery.ztree.all.min.js"></script>
+
+  <!-- layui -->
+  <script src="static/lib/layui/layui.js"></script>
+
+  <!-- api -->
+  <script src="static/js/measure.js"></script>
+  <script src="static/js/my3dConfig.js"></script>
+  <script src="static/js/my3dMap.js"></script>
+  <!--基础js-->
+  <script src="./static/js/config.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script>
+    my3dMap.init(my3dConfig);
+    // 创建toc
+    (function createToc() {
+      var me = this;
+      var tocId = "toc";
+      var config = my3dConfig;
+
+      var zTreeObj;
+      var setting = {
+        check: {
+          enable: true
+        },
+        view: {
+          showLine: false,
+          selectedMulti: false
+        },
+        callback: {
+          onCheck: function (event, treeId, treeNode) {
+            // 切换图层可见性
+            my3dMap.toggleLayerVisibility(treeNode);
+          }
+        }
+      };
+
+      var zNodes = config.toc;
+      zTreeObj = $.fn.zTree.init($("#" + tocId), setting, zNodes);
+    })();
+
+    $('.middleTitlebg').click(function(){
+      alert(1)
+      var value= "桐庐县富春科技建设投资有限公司";
+      my3dMap.locateByCompanyName(value);
+
+    })
+  </script>
+</body>
+
+</html>

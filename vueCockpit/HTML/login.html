@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>羿顿智慧数字驾驶舱</title>
+
+  <script src="./static/js/libs/fontSize.js"></script>
+  <link rel="stylesheet" href="./static/layui/css/layui.css">
+  <link rel="stylesheet" href="./static/css/base.css">
+  <link rel="stylesheet" href="./static/css/login.css">
+
+  <script src="./static/js/libs/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <div class="login_content">
+    <div class="login_left">
+      <div class="login_title">羿顿-智慧数字驾驶舱</div>
+      <div class="login_1">INTELLIGENT DIGITAL <br>
+        COCKPIT</div>
+      <div class="login_2">Help enterprises to achieve digital transformationimpro
+        ve brand business capabilities and strengthen the core
+        competitiveness of enterprises</div>
+      <div class="login_3">技术支持：杭州一信息技术有限公司</div>
+    </div>
+
+    <div class="login_right">
+      <div class="login_right_title">羿顿-智慧数字驾驶舱</div>
+      <div class="login_right_En">YIDUN-ZHIHUISHUZIJIASHICANG</div>
+
+      <ul class="check_login">
+        <li class="active">登录驾驶舱</li>
+        <li>登录后台管理</li>
+      </ul>
+
+      <ul class="check_box">
+        <li>
+          <div class="login_input">
+            <div class="li_icon user"></div>
+            <input type="text" placeholder="请输入登录账户" id="username">
+          </div>
+          <div class="login_input">
+            <div class="li_icon pass"></div>
+            <input type="password" placeholder="请输入密码" id="password">
+          </div>
+          <!-- <div class="login_input">
+            <div class="li_icon yzmIcon"></div>
+            <input style="width: 176px;" type="text" placeholder="验证码">
+            <div class="yzm">
+              <img src="" alt="">
+            </div>
+          </div> -->
+          <button class="login_submit" onclick="login()">登 录</button>
+        </li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="./static/js/config.js"></script>
+  <script>
+    let n = 0;
+    $('.check_login li').click(function () {
+      n = $(this).index()
+      $(this).addClass('active').siblings().removeClass('active')
+    })
+
+    function login() {
+      if($('#username').val()==''||$('#password').val()==''){
+        alert('请输入账号和密码')
+        return
+      }
+	  var data={
+       "password": $('#password').val(),
+       "username": $('#username').val()
+		};
+    data=JSON.stringify(data);
+	console.log(data);
+      if (n == 0) {
+        $.ajax({
+          url: ctxPath + "/doLogin",
+          type: "POST", 
+		  method: 'POST',
+          dataType: 'json',
+		  contentType:"application/json;charset=utf-8",	  
+          data: data,
+          success: function (data) {
+            console.log(data);
+			window.location.href="http://screen.yidun-yun.com/jsc.html";
+          },
+		  error:function(){
+			alert('用户名密码错误，请重试！');
+		}
+        });
+      }else{
+	  $.ajax({
+          url: ctxPath + "/doLogin",
+          type: "POST", 
+		  method: 'POST',
+          dataType: 'json',
+		  contentType:"application/json;charset=utf-8",	  
+          data: data,
+          success: function (data) {
+            console.log(data);
+			window.location.href="http://screen.yidun-yun.com/index.html";
+          },
+		  error:function(){
+			alert('用户名密码错误，请重试！');
+		}
+        });
+      }
+    }
+  </script>
+</body>
+
+</html>
