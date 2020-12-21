@@ -15,16 +15,19 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class IEnterpriseComprehensiveServiceImpl extends ServiceImpl<EnterpriseComprehensiveDao, EnterpriseComprehensiveModel> implements IEnterpriseComprehensiveService {
+public class EnterpriseComprehensiveServiceImpl extends ServiceImpl<EnterpriseComprehensiveDao, EnterpriseComprehensiveModel> implements IEnterpriseComprehensiveService {
 
     private EnterpriseComprehensiveDao enterpriseComprehensiveDao;
 
-    public Map<String, Object> queryEnterpriseCphData( ) throws BaseException {
+    public Map<String, Object> queryEnterpriseCphData(EnterpriseComprehensiveModel enterpriseComprehensiveModel ) throws BaseException {
         int pageNo = 15;
         int pageSize = 0;
         Map<String, Object> resultMap = new HashMap<>();
         QueryWrapper<EnterpriseComprehensiveModel> wrapper = new QueryWrapper<EnterpriseComprehensiveModel>();
         Page page = PageHelper.startPage(pageNo, pageSize,true);
+        if (!org.springframework.util.StringUtils.isEmpty(enterpriseComprehensiveModel.getEnterpriseName())){
+            wrapper.eq("ENTERPRISE_NAME",enterpriseComprehensiveModel.getEnterpriseName());
+        }
         List<EnterpriseComprehensiveModel> list =  enterpriseComprehensiveDao.selectList(wrapper);
         Map<String,Object> pager = new HashMap<>();
         resultMap.put("data", list);
