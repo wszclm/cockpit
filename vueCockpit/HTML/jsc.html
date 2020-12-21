@@ -13,13 +13,14 @@
   <link rel="stylesheet" href="./static/css/index.css">
   <link href="static/lib/Cesium/Widgets/widgets.css" rel="stylesheet" />
   <link href="static/lib/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+  <!--  <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>-->
 
   <script src="./static/js/libs/jquery.min.js"></script>
-
   <script src="./static/layui/layui.js"></script>
   <script src="./static/js/libs/countUp.js"></script>
   <script src="./static/js/libs/countUp-jquery.js"></script>
   <script src="./static/js/libs/echarts.min.js"></script>
+  <script src="https://webapi.amap.com/maps?v=1.4.15&key=96b6c76a76fcec06d217177558982a86"></script>
 
   <script src="https://cdn.bootcss.com/three.js/102/three.min.js"></script>
 
@@ -146,7 +147,7 @@
             <li>视频监控</li>
           </ul>
         </div>
-        
+
         <div class="center_bottom">
           <div class="cb_top">
             <span>智能预警</span>
@@ -286,47 +287,50 @@
 
   <!-- api -->
   <script src="static/js/measure.js"></script>
-  <script src="static/js/my3dConfig.js"></script>
-  <script src="static/js/my3dMap.js"></script>
+<!--  <script src="static/js/my3dConfig.js"></script>-->
+<!--  <script src="static/js/my3dMap.js"></script>-->
   <!--基础js-->
   <script src="./static/js/config.js"></script>
   <script src="./static/js/index.js"></script>
-  <script>
-    my3dMap.init(my3dConfig);
-    // 创建toc
-    (function createToc() {
-      var me = this;
-      var tocId = "toc";
-      var config = my3dConfig;
 
-      var zTreeObj;
-      var setting = {
-        check: {
-          enable: true
-        },
-        view: {
-          showLine: false,
-          selectedMulti: false
-        },
-        callback: {
-          onCheck: function (event, treeId, treeNode) {
-            // 切换图层可见性
-            my3dMap.toggleLayerVisibility(treeNode);
-          }
-        }
-      };
+  <script src="static/js/jscMap.js"></script>
 
-      var zNodes = config.toc;
-      zTreeObj = $.fn.zTree.init($("#" + tocId), setting, zNodes);
-    })();
+<!--  <script>-->
+<!--    my3dMap.init(my3dConfig);-->
+<!--    // 创建toc-->
+<!--    (function createToc() {-->
+<!--      var me = this;-->
+<!--      var tocId = "toc";-->
+<!--      var config = my3dConfig;-->
 
-    $('.middleTitlebg').click(function(){
-      alert(1)
-      var value= "桐庐县富春科技建设投资有限公司";
-      my3dMap.locateByCompanyName(value);
+<!--      var zTreeObj;-->
+<!--      var setting = {-->
+<!--        check: {-->
+<!--          enable: true-->
+<!--        },-->
+<!--        view: {-->
+<!--          showLine: false,-->
+<!--          selectedMulti: false-->
+<!--        },-->
+<!--        callback: {-->
+<!--          onCheck: function (event, treeId, treeNode) {-->
+<!--            // 切换图层可见性-->
+<!--            my3dMap.toggleLayerVisibility(treeNode);-->
+<!--          }-->
+<!--        }-->
+<!--      };-->
 
-    })
-  </script>
+<!--      var zNodes = config.toc;-->
+<!--      zTreeObj = $.fn.zTree.init($("#" + tocId), setting, zNodes);-->
+<!--    })();-->
+
+<!--    $('.middleTitlebg').click(function(){-->
+<!--      alert(1)-->
+<!--      var value= "桐庐县富春科技建设投资有限公司";-->
+<!--      my3dMap.locateByCompanyName(value);-->
+
+<!--    })-->
+<!--  </script>-->
 </body>
 
 </html>
