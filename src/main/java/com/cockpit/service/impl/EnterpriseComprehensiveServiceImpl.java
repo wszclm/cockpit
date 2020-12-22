@@ -8,6 +8,7 @@ import com.cockpit.model.EnterpriseComprehensiveModel;
 import com.cockpit.service.IEnterpriseComprehensiveService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import java.util.Map;
 @Service
 public class EnterpriseComprehensiveServiceImpl extends ServiceImpl<EnterpriseComprehensiveDao, EnterpriseComprehensiveModel> implements IEnterpriseComprehensiveService {
 
+    @Autowired
     private EnterpriseComprehensiveDao enterpriseComprehensiveDao;
 
     public Map<String, Object> queryEnterpriseCphData(EnterpriseComprehensiveModel enterpriseComprehensiveModel ) throws BaseException {
